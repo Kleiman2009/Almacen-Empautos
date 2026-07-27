@@ -1,0 +1,280 @@
+*{ 
+     margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Verdana, Georgia y Times New Roman;
+}
+body {
+    width: 100%;
+    overflow-x: hidden; /* Esto oculta la barra horizontal */
+    background-image: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0,153,255,0.18), transparent 60%), 
+     radial-gradient(ellipse 70% 50% at 80% 40%, rgba(5,61,163,0.55), transparent 65%), 
+     linear-gradient(135deg, #020814 20%, #062c74 65%);
+}
+header{
+    background-color: #09101d;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    z-index: 1000px;
+    top:0;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    padding-left: 1%;
+    box-sizing: border-box;
+    font-weight: bold;
+    }
+
+.cajalogo{
+    width: auto;
+    height: 100%;
+} 
+.logo{
+ height: 100%;
+ width: 100%;
+}
+.menu{
+    display: flex;    
+    gap: 5%;
+    font-size: clamp(1px, 100% ,30px); 
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 35%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 3%;   
+    flex-wrap: wrap;
+}
+a{  
+    white-space: nowrap;
+}
+.catalogo{
+    text-decoration: none;
+    color: white ;
+}
+.comprar{
+   text-decoration: none;
+    color: white;
+}
+.nosotros{
+    text-decoration: none;
+    color: white;
+}
+main{
+    color: #000;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20vh;    
+    }
+.contenedor-productos{
+    display: flex;
+    flex: 1;
+}
+.flayer{
+    width: 100%;
+    height: auto
+    }
+.titulo{
+    margin-top: 2%;
+    font-size: clamp(2vw, 5vw, 3vw);
+    margin-bottom: 3%;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Le da profundidad */
+}
+.carrusel-externo {
+    position: relative; /* Esto mantiene las flechas pegadas aquí */
+    display: flex;
+    align-items: center;
+    padding: 0  ;
+}
+.flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centrado vertical exacto */
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro suave */
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999999; /* Por encima de las tarjetas */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flecha:hover {
+    background: #0d53f6; /* Rojo Malagón al pasar el mouse */
+    transform: translateY(-50%) scale(1.1);
+}
+.flecha-izq { left: 20px; }
+.flecha-der { right: 20px; }
+
+.fotosuperiores{
+    margin: 0;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: flex-start; 
+    gap: 100px;
+    background-color:#09101d;
+    padding: 50px;
+    overflow-x: auto;  
+    overflow-y: none;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    position: relative; 
+    }
+.tarjeta-linea{
+    height: 100%;
+    margin: 0%;
+}
+/* La tarjeta que está en el centro (iluminada automáticamente) */
+.tarjeta-linea.activa{
+    opacity: 1;
+    z-index: 10;
+    box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.6);
+}
+.foto{
+    height: 90%;
+    width: auto;
+    border-radius: 20%;
+    border:5px solid #172949;
+    overflow-y: none;      
+}
+.foto:hover{
+    filter: brightness(1) saturate(1) grayscale(0);
+    transform: scale(1.05); 
+    box-shadow: 0 15px 30px rgb(0, 0, 0); 
+    z-index: 10; 
+}
+.textotarjeta{
+    color: white; 
+    font-weight:bold;
+    font-size: 20px; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.titulonosotros {
+    margin: 5%;
+    font-size: clamp(4vw, 5vw, 3vw);
+    color: white;
+}
+.masabajo{
+    display: flex;
+    width: 100%;
+    height: 20%;    
+    justify-content: center;
+    gap: 5%;
+    flex-wrap: wrap;
+}
+.contenedor-inferior-imagenes{
+        width:  45%;
+        display: flex;
+    }
+.imagenes-nosotros{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        border: 4px solid #02172e;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+.imagenes-nosotros:hover {
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5), 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+/*Media Queries*/
+ @media(max-width:1100px){
+        .fotosuperiores{
+            height: 40vh;
+        }
+        .tarjeta-linea{
+            height: 80%;
+        }
+        .foto{
+            height: 250px;
+        }
+    }
+   
+@media (max-width:800px){
+      .fotosuperiores{
+            height: 40vh;
+            gap: 17px;
+        }
+        .tarjeta-linea{
+            height: 80%;
+        }
+        .foto{
+            height: 220px;
+        }
+}
+
+@media (max-width:650px){
+        .fotosuperiores{
+            height: 30vh;
+            gap: 15px;
+        }
+        .foto{
+            height: 160px;
+        }
+        .textotarjeta{
+            font-size: 15px;
+        }
+}
+
+@media (max-width:530px){
+        .fotosuperiores{
+            height: 27vh;
+            gap: 15px;
+        }
+        .foto{
+            height: 130px;
+        }
+        .textotarjeta{
+            font-size: 12px;
+        }
+}
+
+@media (max-width:400px){
+        .fotosuperiores{
+            height: 20vh;
+            gap: 15px;
+            padding: 17px;
+            padding-bottom: 0;
+        }
+    
+        .foto{
+            height: 110px;
+        }
+        .textotarjeta{
+            font-size: 10px;
+            top: 10px;
+        }
+}
+@media (max-width: 768px) {
+    .flecha { display: none; }
+}
+@media (max-width:700px) {
+    .header{
+        height: 5vh;
+        padding-left: 100px;
+        box-sizing: border-box;
+    }  
+    .menu{
+        font-size: 10px;
+    }
+    .contenedor-inferior-imagenes{
+        width: 80%;
+    } 
+}
+    

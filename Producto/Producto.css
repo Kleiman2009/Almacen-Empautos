@@ -1,0 +1,658 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Verdana, Georgia y Times New Roman;
+  
+}
+
+  
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #0d182b;
+    margin: 0;
+    color: #ffffff;
+}
+  
+
+header{
+        background-color: #09101d;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1000px;
+        top:0;
+        align-items: center;
+        width: 100%;
+        height: 8vh;
+       padding-left: 1%;
+        box-sizing: border-box;
+        font-weight: bold;
+        margin-bottom: 20px ;
+    }
+
+@media (max-width:700px) {
+    .header{
+        height: 5vh;
+        padding-left: 100px;
+        box-sizing: border-box;
+    }       
+    }
+
+
+
+
+
+.cajalogo{
+    margin: 0;
+    width: auto;
+    height: 100%;
+    
+}
+    
+.logo{
+ height: 100%;
+ width: 100%;
+}
+.buscar{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding-left: 3%;
+    font-size: 100%;
+    font-family: Arial, Verdana, Georgia y Times New Roman;
+    background-color: #172949;
+    border: 1px white;
+    color: #fff;
+}
+.carrito{
+    height: 100%;   
+    margin: 0%;
+    margin-right: 2%;
+    justify-content: center;
+     display: flex;
+     background-color: transparent;
+    align-items: center;
+}
+.carritoimg{
+    width: 90%;
+    height: 90%;
+    color: wheat;
+    margin-top: 4px;
+    filter: invert(1) brightness(100%);
+}
+#carrito {
+    position: relative;
+    display: inline-block;
+}
+#contador-carrito {
+    position: absolute;
+    top:5%; 
+    right: -4px;
+    background: rgb(255, 145, 0); /* Rojo llamativo */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+/* OJOOOOOOOOO CARRITO!!!!!!! */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Empezamos fuera de la pantalla por la derecha */
+    width: 350px;
+    height: 100%;
+    background-color: #1a2a47; /* El azul oscuro que ya usas */
+    color: white;
+    transition: 0.4s ease; /* Movimiento suave */
+    z-index: 3000; /* Por encima de todo */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Clase que activa el movimiento (la que pone el JS) */
+.menu-lateral.active {
+    right: 0; /* Se desliza hacia adentro */
+}
+
+/* Cabecera del Menú */
+.menu-header {
+    padding: 20px;
+    background-color: #0d1b2a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #4dfff6; /* Línea roja distintiva */
+}
+
+/* Botón para eliminar un producto individual del menú del carrito */
+.btn-eliminar-item {
+    background: transparent;
+    border: none;
+    color: #ff5252; /* Un tono rojo vibrante para alertar la acción */
+    font-size: 1.5rem; /* Tamaño grande para la "X" */
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+/* Efecto al pasar el cursor sobre la X */
+.btn-eliminar-item:hover {
+    background-color: rgba(255, 82, 82, 0.15); /* Fondo rojizo suave */
+    color: #ff7373; /* Aclara el rojo un poco */
+    transform: scale(1.1); /* Crece sutilmente */
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Cuerpo donde se listan los aceites/repuestos */
+.menu-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    
+}
+
+.item-carrito-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #415a77;
+    font-size: 0.9rem;
+}
+
+/* Botón de Finalizar (Footer) */
+.menu-footer {
+    padding: 10px;
+    background-color: #0d1b2a;
+}
+
+.btn-finalizar {
+    width: 100%;
+    padding: 15px;
+    background-color: #4dfff6;
+    color: #0d1b2a;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-finalizar:hover {
+    background-color: #4dfff6;
+    transform: scale(1.02);
+}
+
+.container-detalle {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #172949;
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.izquierda {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: sticky;
+    flex: 1;
+    top: 20px;
+    height: fit-content;
+}
+
+.galeria-contenedor {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.galeria-miniaturas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 480px; /* Altura controlada para activar el scroll con 10-20 fotos */
+    overflow-y: auto;
+    padding-right: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: #26eedb #09101d;
+}
+
+.galeria-miniaturas::-webkit-scrollbar {
+    width: 6px;
+}
+.galeria-miniaturas::-webkit-scrollbar-track {
+    background: #09101d;
+    border-radius: 4px;
+}
+.galeria-miniaturas::-webkit-scrollbar-thumb {
+    background: #26eedb;
+    border-radius: 4px;
+}
+
+.miniatura {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background-color: #09101d;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+}
+
+.miniatura:hover,
+.miniatura.activa {
+    border-color: #26eedb;
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 8px rgba(38, 238, 219, 0.4);
+}
+
+/* Contenedor de la foto grande adaptado para zoom */
+.galeria-principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #09101d;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #22313a;
+    overflow: hidden; /* Vital para que la ampliación no se salga del cuadro */
+    position: relative;
+    cursor: zoom-in; /* Cambia el cursor para indicar que hay zoom disponible */
+}
+
+/* Imagen principal con transición suave */
+.producto-imagen {
+    width: 100% !important;
+    max-width: 360px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out; /* Movimiento fluido inmediato */
+}
+
+.producto-imagen:hover {
+    transform: scale(1.03);
+}
+
+.producto-imagen  {
+    
+    width:70%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.producto-imagen:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* Sección Derecha: Información */
+.producto-info-compra {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-info-compra h1 {
+    font-size: 26px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.producto-info-compra hr{
+    margin-bottom: 20px;
+}
+
+.datos-especificos{
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      border-radius: 10px;
+}
+
+.datos-especificos td, th{
+    border: 3px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+    width: 33%;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+}
+
+
+.contenedor-especificaciones h2{
+    margin-bottom: 10px;
+}
+
+.contenedor-especificaciones p{
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.contenedor-especificaciones hr{
+    border-color: #4b4a4a;
+    margin-bottom: 20px;
+}
+
+.variaciones-container h4 {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #f5f5f5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+    .info-superficial{
+        display: flex;
+        justify-content: center;
+        gap: 5% ;
+        height: 70px;    
+        align-items: center;    
+    }
+
+
+    .dato-superficial{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        width: 30%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #09101d;
+        
+    }
+    
+    .dato-superficial   P{
+        font-size: 70%;
+        color: grey;
+    }
+
+    .dato-superficial h4{
+        font-size: 110%;
+    }
+
+.opciones-grid {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.opcion {
+    padding: 8px 15px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    text-decoration: none;
+    color: gray;
+    font-size: 14px;
+    background: transparent;
+    transition: 0.2s;
+}
+
+.opcion:hover {
+    border-color: rgb(255, 255, 255); /* Naranja Amazon */
+    background: #fdf5ef;
+}
+
+.opcion.activa {
+    border: 2px solid rgb(1, 86, 155);
+     background: transparent;
+    font-weight: bold;
+    color: white;
+    pointer-events: none; /* No se puede clickear la actual */
+}
+
+
+/* Contenedor de la tabla */
+.tabla-especificaciones {
+    margin-top: 20px;
+
+    
+    
+    
+}
+
+
+.datos-tabla{
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.datos-tabla td {
+    border: 1px solid #ffffff;
+    text-align: center;
+    justify-content: center;
+     border-collapse: collapse;
+
+}
+
+
+.btn-comprar{
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    font-weight: bolder ;
+    margin-top: 20px;
+}
+
+.btn-comprar:hover{
+    transform: translateY(-10px); /* La tarjeta sube un poco */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra más fuerte */
+    border-color: #4dfff6; /* O el color que uses para resaltar */
+    color: #4dfff6;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de regresar al catálogo */
+.btn-regresar-catalogo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0 10px 0; /* Espaciado para que no quede pegado al header ni al contenido */
+    padding: 10px 18px;
+    background-color: transparent; /* Fondo transparente estilo outline */
+    color: #26eedb; /* El tono cian llamativo de tu carrito */
+    text-decoration: none; /* Quitamos la línea de enlace tradicional */
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 2px solid #26eedb; /* Borde cian delgado */
+    border-radius: 8px; /* Bordes suavemente redondeados */
+    transition: all 0.3s ease; /* Transición suave para los efectos visuales */
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse por encima (Hover) */
+.btn-regresar-catalogo:hover {
+    background-color: #26eedb; /* El fondo se llena de cian */
+    color: #111b21; /* El texto cambia a oscuro para que contraste perfecto */
+    box-shadow: 0 0 12px rgba(38, 238, 219, 0.4); /* Un pequeño brillo neón moderno */
+    transform: translateX(-4px); /* El botón se mueve sutilmente a la izquierda indicando retorno */
+}
+
+/* Efecto cuando se presiona (Click) */
+.btn-regresar-catalogo:active {
+    transform: translateX(-2px) scale(0.98); /* Pequeña compresión física de clic */
+}
+
+
+@media  (max-width:1060px){
+    header{
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+   .lineas{
+    width: 15%;
+    height: auto;
+    }
+
+    .carro{
+        width:50%;
+        height: 10%;
+        margin: 0%;
+        display: block;
+        margin-bottom: -13px;    
+    }
+
+    .textolineas{
+        font-size: clamp(1px, 100%, 14px);
+        margin: 0%;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+    .cajalogo{
+        
+        width: 40%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .buscador{
+         order: 2;
+         margin:0;
+         width: 100%;
+         height: 200%;
+         padding: 0;
+         margin-top: 10px;
+         margin-bottom: 10px;
+  
+        
+    }   
+
+    .buscar{
+        width: 80%;
+        height: 6vh;
+        border-radius: 30px;
+        padding-left: 4%;
+        font-size: 100%;
+        font-family: Arial, Verdana, Georgia y Times New Roman;
+    }
+
+  .carrito{
+    height: 10vh;
+    margin: 0%;
+    margin-right: 2%;
+    justify-content: center;
+     display: flex;
+     align-items: center;
+
+}  
+
+    .carritoimg{
+        width: 100%;
+        height: 100%;
+
+
+    }
+}
+
+
+@media (max-width:700px){
+    header{
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+   .lineas{
+    width: 15%;
+    height: auto;
+      margin-top: 5px;
+    }
+
+    .carro{
+        width:80%;
+        height: 10%;
+        margin: 0%;
+        display: block;
+        margin-bottom: -13px;    
+    }
+
+    .textolineas{
+        font-size: 80%;
+        margin-top: 10px;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+    .cajalogo{
+        
+        width: 50%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .buscador{
+         order: 2;
+         margin:0;
+         width: 100%;
+         height: 100%;
+         padding: 0;
+         margin-top: 10px;
+         margin-bottom: 10px;
+  
+        
+    }
+
+    .buscar{
+        
+        height: 5vh;
+        border-radius: 30px;
+        padding-left: 4%;
+        font-size: 100%;
+        font-family: Arial, Verdana, Georgia y Times New Roman;
+    }
+
+    .carrito{
+    
+    height: 60px;
+    margin-top: 5px;
+       padding: 0;
+
+
+    }
+.carritoimg{
+    width: 100%;
+    height: 100%;
+
+}
+
+}
