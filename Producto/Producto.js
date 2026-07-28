@@ -6,19 +6,7 @@ function toggleCarrito() {
     renderizarProductos();
 }
 
-function enviarWhatsApp() {
-    let carrito = JSON.parse(sessionStorage.getItem('carrito')) || [];
-    let mensaje = "Hola Repuestos Malagón, quiero pedir:\n\n";
-    
-    carrito.forEach(item => {
-        mensaje += `\n- ${item.nombre} (Cant: ${item.cantidad})\n`;
-    });
 
-    const telefono = "573166222504"; // Tu número de WhatsApp del almacén
-    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    
-    window.open(url, '_blank');
-}
 
 
 

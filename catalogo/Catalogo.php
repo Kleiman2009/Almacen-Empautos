@@ -54,7 +54,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 </head>
 <body>
 <header> 
-<a href="/./inicio/index.php" class="cajalogo">
+<a href="/index.php" class="cajalogo">
     <img class="logo" src="/../img/multimedia/logo.png" alt="logo">
 </a>                 
 
@@ -75,7 +75,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         <h2>Mi Carrito</h2>
     </div>
     
-    <div class="menu-body">
+    <div class="menu-body"> 
         <div id="contenido-carrito">
             <?php if (empty($productosEnCarrito)): ?>
                 <p style="text-align:center; padding:20px; color:#fff;">El carrito está vacío.</p>

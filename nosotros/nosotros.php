@@ -106,7 +106,7 @@
             
              <div class="promocion-inferior">
 
-                    <a href="Catalogo.php" class="ver-catalogo">
+                    <a href="/catalogo/Catalogo.php" class="ver-catalogo">
                         
                         <h2>VER CATALOGO ></h2>
                     </a>

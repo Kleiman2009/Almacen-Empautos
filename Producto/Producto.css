@@ -467,6 +467,7 @@ header{
     color: white;
     font-weight: bolder ;
     margin-top: 20px;
+    width: 100%;
 }
 
 .btn-comprar:hover{
@@ -479,6 +480,7 @@ header{
 
 /* Estilos para el botón de regresar al catálogo */
 .btn-regresar-catalogo {
+    width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 8px;
