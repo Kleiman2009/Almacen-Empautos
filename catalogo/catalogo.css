@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Verdana, Georgia y Times New Roman;
+    font-family: Arial, sans-serif;
 }
 body{
     background-color: #172949;
@@ -48,11 +48,11 @@ header{
     border-radius: 10px;
     padding-left: 3%;
     font-size: 100%;
-    font-family: Arial, Verdana, Georgia y Times New Roman;
+    font-family: Arial, sans-serif;
     background-color: #172949;
-    border: 1px white;
+    border: 1px solid white;
     color: #fff;
-}  
+}   
 /*carrito*/
 .carrito{
     height: 100%;   
@@ -78,7 +78,7 @@ header{
     position: absolute;
     top:5%; 
     right: -4px;
-    background: rgb(255, 145, 0); /* Rojo llamativo */
+    background: rgb(255, 145, 0);
     color: white;
     border-radius: 50%;
     padding: 2px 6px;
@@ -88,13 +88,13 @@ header{
 .menu-lateral {
     position: fixed;
     top: 0;
-    right: -400px; /* Empezamos fuera de la pantalla por la derecha */
+    right: -400px;
     width: 350px;
     height: 100%;
-    background-color: #1a2a47; /* El azul oscuro que ya usas */
+    background-color: #1a2a47;
     color: white;
-    transition: 0.4s ease; /* Movimiento suave */
-    z-index: 3000; /* Por encima de todo */
+    transition: 0.4s ease;
+    z-index: 3000;
     box-shadow: -5px 0 15px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #4dfff6; /* Línea roja distintiva */
+    border-bottom: 2px solid #4dfff6;
 }
 .btn-cerrar {
     background: none;
@@ -126,8 +126,8 @@ header{
 .btn-eliminar-item {
     background: transparent;
     border: none;
-    color: #ff5252; /* Un tono rojo vibrante para alertar la acción */
-    font-size: 1.5rem; /* Tamaño grande para la "X" */
+    color: #ff5252;
+    font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
     padding: 4px 8px; 
@@ -135,11 +135,10 @@ header{
     transition: all 0.2s ease;
 }
 
-/* Efecto al pasar el cursor sobre la X */
 .btn-eliminar-item:hover {
-    background-color: rgba(255, 82, 82, 0.15); /* Fondo rojizo suave */
-    color: #ff7373; /* Aclara el rojo un poco */
-    transform: scale(1.1); /* Crece sutilmente */
+    background-color: rgba(255, 82, 82, 0.15);
+    color: #ff7373;
+    transform: scale(1.1);
 }
 .item-carrito-menu {
     display: flex;
@@ -167,68 +166,74 @@ header{
     background-color: #4dfff6;
     transform: scale(1.02);
 }
+
 /*Barra Sub-Categorias */
 .barra-productos{
+    position: relative;
     width: 100%;
     background-color: #415a77;
     height: 35px;
-    margin: 1px;
-    display: flex;
-    gap: 20px;
-    justify-content: flex-start;
-    overflow-x: auto; 
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.btn-cat{
-    font-size: 15px;
-    color: #ffffff;
-    background-color: #415a77;
-    border: none;
-    box-shadow: none;
-    font-weight: bold;
-    overflow-x: none;
-    margin-left: 10px;
-    cursor: pointer;
-    height: 100%;
-}
-.btn-cat:hover {
-    color: rgb(0, 140, 255);
-}
-.barra-productos {
+    margin: 1px 0;
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: center;
-
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .contenedor-categorias {
     display: flex;
     overflow-x: auto;
-    scroll-behavior: smooth; /* Hace que el movimiento sea suave */
+    scroll-behavior: smooth;
     width: 100%;
-    justify-content: center;
     align-items: center;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-syle: none;  
-    scrollbar-width: none;  
-    
+    gap: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
- 
-.flecha {
+.contenedor-categorias::-webkit-scrollbar {
     display: none;
-}   
+}
 
+.btn-cat {
+    flex: 0 0 auto;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.btn-cat:hover {
+    color: #26eedb;
+}
+
+.flecha {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(9, 16, 29, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.1rem;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}  
+.flecha-izq {
+    left: 0;
+}
+.flecha-der {
+    right: 0;
+}
 
 .panel-sub {
     display: none;
-    flex-wrap: wrap; /* Para que si son muchas, bajen a la siguiente fila */
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 20px;
     padding: 20px;
     align-items: center;
@@ -246,7 +251,7 @@ header{
     transition: transform 0.3s, border-color 0.3s;
 }
 .imagen-sub-categoria {
-    width: 250px; /* Tamaño pequeño para que no ocupe demasiado */
+    width: 250px;
     height: 250px;
     object-fit: contain;
     border-radius: 10px;
@@ -259,19 +264,18 @@ header{
 }
 .card-subcategoria:hover {
     transform: translateY(-5px);
-    border-color: #40e0d0; /* El cian de tu marca */
+    border-color: #40e0d0;
     box-shadow: 0 5px 15px rgba(64, 224, 208, 0.2);
 }
-/*Cuerpo de la pagina(ya se ven los productos)*/
+
+/*Cuerpo de la pagina*/
 main{
     background-color: #172949;
     color: white;
     overflow: hidden;
     width: 100%;
     box-sizing: border-box !important;
-    flex-wrap: wrap;
 }  
-/* Este es el contenedor que envuelve todos los productos */
 .contenedor-productos {
     display: flex !important;
     flex-direction: row; 
@@ -284,8 +288,8 @@ main{
     background-color: #172949; 
     box-sizing: border-box;
     margin-top: 20px;
-    
-}.tarjeta-repuesto {
+}
+.tarjeta-repuesto {
     background: #0d1b33; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 20px;
@@ -295,22 +299,16 @@ main{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Esto empuja el botón abajo y el contenido arriba */
+    justify-content: space-between;
     text-decoration: none;
     line-height: 1.7;
     padding: 12px;
-    overflow: hidden; /* Corta cualquier desborde rebelde */
-
-    /* CAMBIO CLAVE AQUÍ */
- 
+    overflow: hidden;
 }
 .tarjeta-repuesto:hover {
     transform: translateY(-10px); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
     border-color: #4dfff6; 
-}
-.img-tarjeta-productos{
-    display: flex;
 }
 .tarjeta-repuesto img {
     width: auto; 
@@ -318,17 +316,12 @@ main{
     object-fit: contain; 
     background: transparent; 
     border-radius: 5px;
-
 }
-    
-
-
 .info-repuesto {
     margin-top: 10px;
     background: #172949;
     border-radius: 10px;
     padding: 12px;
-    justify-content: space-between;
     box-sizing: border-box;    
 }
 .producto-titulo {
@@ -340,8 +333,6 @@ main{
     font-size: 1rem; 
     line-height: 1.3; 
     margin-bottom: 12px;
-    
-    /* CAMBIO AQUÍ: Altura máxima en lugar de fija */
     max-height: 3.9em; 
 }
 .marca{
@@ -359,199 +350,44 @@ main{
     margin-top: 15px;
     margin-bottom: 10px;
 }
-.btn-comprar {
-    margin-top: 15px;
-    background-color: #4dfff6;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    height: 40px;   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    width: 80%; 
-    
-
-}
-.btn-comprar img{
-    height: 100%;
-}
-.btn-comprar button{
-    height: 100%;
-    font-weight: bold ;
-    background: transparent;
-    border-color: transparent   ;
-    cursor: pointer;
-}
-.btn-comprar:hover{
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra más fuerte */
-}  
-/*MediaQueries*/                   
-
-@media  (max-width:1336px){
-    
-    .barra-productos{
-        justify-content: flex-start;
-        gap: 5%;
-        align-items:center ;
-        padding-left:  10px ;
+@media (min-width:1680px) {
+    .flecha{
+        display: none;
     }
-   .flecha {
-    position: absolute;
-    background:  #415a77;
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 2; /* Por encima de las tarjetas */
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1px;
-}   
-
-.flecha:hover {
-  border: #09101d;
-}
-.flecha-izq { left: 10px; }
-.flecha-der { right: 10px; }
-
-
-
-}
-@media  (max-width:1060px){
-    header{
-        flex-wrap: wrap;
-        height: auto;
-    }
-    .lineas{
-        width: 15%;
-        height: auto;
-    }
-    .carro{
-        width:30%;
-        height: 10%;
-        margin: 0%;
-        display: block;
-        margin-bottom: -13px;    
-    }
-    .textolineas{
-        font-size: clamp(1px, 100%, 14px);
-        margin: 0%;
-        word-wrap: break-word;
-        margin-bottom: 10px;
-        line-height: 1;
-    }
-    .cajalogo{        
-        width: 40%;
-        height: auto;
-        display: flex;
+    .panel-sub{
         justify-content: center;
-    }
-    .buscador{    border: 2;
-        margin:0;
-        width: 100%;
-        height: 200%;
-        padding: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }   
-    .buscar{
-        width: 80%;
-        height: 6vh;
-        border-radius: 30px;
-        padding-left: 4%;
-        font-size: 100%;
-        font-family: Arial, Verdana, Georgia y Times New Roman;
-    }
-    .carrito{
-        height: 10vh;
-        margin: 0%;
-        margin-right: 2%;
-        justify-content: center;
-        display: flex;
         align-items: center;
-    }  
-
-    .carritoimg{
-            width: 100%;
-            height: 100%;
+        scroll-behavior: none;
     }
 }
+/*MediaQueries*/ 
+@media (max-width:809px){
+    .tarjeta-repuesto{
+        width: 90%;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .tarjeta-repuesto a{
+        width: 50%;
+    }    
+    .info-repuesto{
+        width: 50%;
+    }
+}
+
 @media (max-width: 768px) {
     .flecha { display: none; }
 } 
-/*700*/
-@media (max-width:700px){
-    header{
-        height: auto;
-        flex-wrap: wrap
-    }
-    .lineas{
-        width: 15%;
-        height: auto;
-        margin-top: 5px;
-    }
-    .carro{
-        width:80%;
-        height: 10%;
-        margin: 0%;
-        display: block;
-        margin-bottom: -13px;    
-    }
-    .textolineas{
-        font-size: 80%;
-        margin-top: 10px;
-        word-wrap: break-word;
-        margin-bottom: 10px;
-        line-height: 1;
-    }
-    .cajalogo{    
-        width: 50%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        margin-top: 5px;
-    }
-    .buscador{
-        border: 2;
-        margin:0;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;       
-    }
-    .buscar{
-        height: 5vh;
-        border-radius: 30px;
-        padding-left: 4%;
-        font-size: 100%;
-        font-family: Arial, Verdana, Georgia y Times New Roman;
-    }
-    .carrito{
-        height: 60px;
-        margin-top: 5px;
-        padding: 0;
-    }
-    .carritoimg{
-        width: 100%;
-        height: 100%;
-    }
-    .RedesSociales{
-        font-size: 30px;
-    }
-    .categorias  {
-        font-size: 30px;
-    }
-    .contactenos{
-        font-size: 30px;
-    }    
-}
-@media (max-width:400px){
+
+@media (max-width:500px) {
     .tarjeta-repuesto{
-        width: 300px;
-        height: 390px}
-}                   
+        flex-direction: column;
+    }
+    .tarjeta-repuesto a{
+        width: 100%;
+    }
+    .info-repuesto{
+       width: 100%;
+       height: 30%;
+    }
+}

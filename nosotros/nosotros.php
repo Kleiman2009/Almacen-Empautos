@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repuestos Malagon</title>
     <link rel="stylesheet" href="nosotros.css">
+    <link rel="stylesheet" href="/inicio/footer.css"
 </head>
 <body>
 
@@ -14,13 +15,13 @@
 <header> 
  
     <a class="cajalogo">
-    <img class="logo" src="/./img/logo.png" alt="logo">
+    <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
     </a class="fondosuperior">
 
     <nav class="menu">
 
-        <a  class="catalogo" href="/inicio/index.php">INICIO</a>
-        <a  class="catalogo" href="/catalogo/Catalogo.php">CATALOGO</a>
+        <a  class="catalogo" href="/./inicio/index.php">INICIO</a>
+        <a  class="catalogo" href="/./catalogo/Catalogo.php">CATALOGO</a>
         <a  class="nosotros" href="#">NOSOTROS</a>
     
     </nav>
@@ -29,7 +30,7 @@
 <!--main-->
   <main>
 
-    <img class="banner" src="/../img/flayer.png" alt="banner">
+    <img class="banner" src="/../img/Multimedia/flayer.png" alt="banner">
 
     
 
@@ -42,7 +43,7 @@
     <div class="mision">
             <div class="titulo-mision">
                  <div class="figurita">
-                  <img class="dibujo" src="/../img/mision.png" alt="">
+                  <img class="dibujo" src="/../img/Multimedia/mision.png" alt="">
                 </div>
                <h1>Nuestra Misión</h1>
             </div>
@@ -52,7 +53,7 @@
     <div class="mision">
         <div class="titulo-mision">
              <div class="figurita">
-                <img class="dibujo" src="/./img/vision.png" alt="">
+                <img class="dibujo" src="/./img/Multimedia/vision.png" alt="">
              </div>
                 <h1>Nuestra Visión</h1>
         </div>        

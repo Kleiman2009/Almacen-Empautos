@@ -140,29 +140,29 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 <section id="panel-subcategorias" class="panel-sub"></section>
 
 <section id="catalogo-productos" class="contenedor-productos">
-<?php if (empty($listaProductos)): ?>
-    <p style="text-align:center; color:#fff; width:100%; grid-column: 1 / -1; padding: 40px;">No se encontraron repuestos con ese criterio de búsqueda.</p>
-<?php else: ?>
-    <?php foreach ($listaProductos as $prod) { ?>
-    <div class="tarjeta-repuesto">
-        <a href="/./Producto/Producto.php?id=<?php echo $prod->GetId(); ?>"> 
-            <img src="<?php echo $prod->GetImagen_Url(); ?>" alt="<?php echo $prod->GetNombre(); ?>">
-        </a>
-        <div class="info-repuesto">
-             <h3 class="producto-titulo"><?php echo $prod->GetNombre(); ?></h3>
-             <p class="marca">Marca: <?php echo $prod->GetMarca_Producto(); ?></p>   
-             <p class="tipo">Tipo: <?php echo $prod->GetCategoria(); ?></p>   
-            <div class="contenedor-btn">
-                <div class="card-acciones">
-                    <a href="../Producto/Producto.php?id=<?php echo $prod->GetId(); ?>" class="btn-ver-mas">
-                        VER DETALLES
-                    </a>
+    <?php if (empty($listaProductos)): ?>
+        <p style="text-align:center; color:#fff; width:100%; grid-column: 1 / -1; padding: 40px;">No se encontraron repuestos con ese criterio de búsqueda.</p>
+    <?php else: ?>
+        <?php foreach ($listaProductos as $prod) { ?>
+        <div class="tarjeta-repuesto">
+            <a href="/./Producto/Producto.php?id=<?php echo $prod->GetId(); ?>"> 
+                <img src="<?php echo $prod->GetImagen_Url(); ?>" alt="<?php echo $prod->GetNombre(); ?>">
+            </a>
+            <div class="info-repuesto">
+                <h3 class="producto-titulo"><?php echo $prod->GetNombre(); ?></h3>
+                <p class="marca">Marca: <?php echo $prod->GetMarca_Producto(); ?></p>   
+                <p class="tipo">Tipo: <?php echo $prod->GetCategoria(); ?></p>   
+                <div class="contenedor-btn">
+                    <div class="card-acciones">
+                        <a href="../Producto/Producto.php?id=<?php echo $prod->GetId(); ?>" class="btn-ver-mas">
+                            VER DETALLES
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>       
-    </div> 
-    <?php } ?>
-<?php endif; ?>
+            </div>       
+        </div> 
+      <?php } ?>
+    <?php endif; ?>
 </section>
 </main>
 
