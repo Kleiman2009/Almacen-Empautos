@@ -1,19 +1,19 @@
- name: Desplegar en InfinityFree por FTP
+name: Desplegar en InfinityFree por FTP
 
 on:
   push:
     branches:
-      - main  # Si tu rama principal se llama "master", cambia "main" por "master"
+      - main
 
 jobs:
   web-deploy:
     name: Subiendo archivos PHP
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Obtener el codigo mas reciente
+    - name: Obtener codigo
       uses: actions/checkout@v4
 
-    - name: 🚀 Sincronizar archivos por FTP
+    - name: Sincronizar FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
