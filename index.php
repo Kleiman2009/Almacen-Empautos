@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/inicio/footer.css">
 </head>
 <body>
-    <!--header-->
+    
 <header> 
     <a class="cajalogo">
-    <img class="logo" src="../img/multimedia/logo.png" alt="logo">
+    <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
     </a class="fondosuperior">
 
     <nav class="menu">
@@ -22,7 +22,7 @@
 </header>
 <!--main-->
 <main>
-    <img class="flayer" src="../img/multimedia/flayer.png" alt="flayer">
+    <img class="flayer" src="/img/multimedia/flayer.png" alt="flayer">
 <div>
     <div class="titul">
         <h1 class="titulo">

@@ -4,8 +4,8 @@ class Cconexion {
     public static function ConexionBD() {
         
         $host = "sql201.infinityfree.com";
-        $dbname = "repuestos";
-        $username = "if0_42532505_root";
+        $dbname = "if0_42532505_repuestos";
+        $username = "if0_42532505";
         $password = "ZdMTewqn7S3KS6";
 
         try {
