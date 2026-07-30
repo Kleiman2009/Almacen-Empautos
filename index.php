@@ -22,7 +22,7 @@
 </header>
 <!--main-->
 <main>
-    <img class="flayer" src="/img/multimedia/flayer.png" alt="flayer">
+    <img class="flayer" src="/img/Multimedia/flayer.png" alt="flayer">
 <div>
     <div class="titul">
         <h1 class="titulo">
@@ -152,10 +152,10 @@
 </h1>
     <section class="masabajo">
             <a class="contenedor-inferior-imagenes" href="https://www.google.com/maps/place/repuestos+malagon/@3.9025118,-76.2945344,17z/data=!3m1!4b1!4m6!3m5!1s0x8e39e78af9f7b487:0x108e2c1a504c05f3!8m2!3d3.9025118!4d-76.2945344!16s%2Fg%2F11ygd9hkv5?entry=ttu&g_ep=EgoyMDI2MDQyOC4wIKXMDSoASAFQAw%3D%3D">
-                <img class="imagenes-nosotros" src="/img/multimedia/ubicacionv2.jpg" alt="electrico">
+            <img class="imagenes-nosotros" src="/img/Multimedia/ubicacionv2.jpg" alt="electrico">
             </a>
             <a class="contenedor-inferior-imagenes" href="/catalogo/Catalogo.php">
-                <img class="imagenes-nosotros" src="/img/multimedia/catalogov2.png" alt="electrico">
+                <img class="imagenes-nosotros" src="/img/Multimedia/catalogov2.png" alt="electrico">
             </a>
     </section>
 </main>
