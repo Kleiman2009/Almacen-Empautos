@@ -3,10 +3,10 @@ class Cconexion {
     // Agregamos "static" para poder llamarla con los dos puntos ::
     public static function ConexionBD() {
         
-        $host = "127.0.0.1:3306:";
+        $host = "sql201.infinityfree.com";
         $dbname = "repuestos";
-        $username = "root";
-        $password = "FamiliaMalagonVelez";
+        $username = "if0_42532505_root";
+        $password = "ZdMTewqn7S3KS6";
 
         try {
             $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
