@@ -55,7 +55,8 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 <body>
 <header> 
 <a href="/index.php" class="cajalogo">
-    <img class="logo" src="/../img/multimedia/logo.png" alt="logo">
+    <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
+    
 </a>                 
 
 <!-- Formulario del buscador con botón oculto para asegurar el envío al presionar Enter -->
@@ -65,7 +66,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 </form>
 
 <a id="carrito" class="carrito" href="javascript:void(0)" onclick="toggleCarrito()">
-    <img class="carritoimg" src="/../img/multimedia/carrito.svg" alt="carrito">
+    <img class="carritoimg" src="/img/Multimedia/carrito.svg" alt="carrito">
     <span id="contador-carrito"><?php echo $totalItems; ?></span>
 </a>
 
@@ -167,6 +168,6 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 </main>
 
 <?php include __DIR__ . '/../inicio/footer.php'; ?>
-<script src="catalogo.js"></script> 
+<script src="Catalogo.js"></script> 
 </body>
 </html>

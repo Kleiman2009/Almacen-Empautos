@@ -48,19 +48,19 @@
     </div>
     <div class="redes">   
         <a class="social" href="https://www.instagram.com/repuestosmalagon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">     
-          <img src="/../img/multimedia/logofacebook.svg" alt="feisbuk">
+          <img src="/img/Multimedia/logofacebook.svg" alt="feisbuk">
           <p>
             Facebook
           </p>
         </a>
         <a class="social" href="https://www.instagram.com/repuestosmalagon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">  
-          <img src="/../img/multimedia/logoinstagram.svg" alt="ingstagram">
+          <img src="/img/Multimedia/logoinstagram.svg" alt="instagram">
           <p>
             Instagram
           </p>
         </a>
         <a class="social" href="https://www.tiktok.com/@almacenempautos">
-          <img src="/../img/multimedia/logowhatsapp.svg" alt="">
+          <img src="/img/Multimedia/logowhatsapp.svg" alt="">
           <p>
             whatsapp
           </p> 
