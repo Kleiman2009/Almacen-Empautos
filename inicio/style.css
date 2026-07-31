@@ -197,6 +197,9 @@ main{
  @media(max-width:1100px){
         .fotosuperiores{
             height: 40vh;
+            overflow-y: none;
+            align-items: center;
+
         }
         .tarjeta-linea{
             height: 80%;
@@ -210,6 +213,9 @@ main{
       .fotosuperiores{
             height: 40vh;
             gap: 17px;
+            overflow-y: none;
+            align-items: center;
+
         }
         .tarjeta-linea{
             height: 80%;
@@ -223,6 +229,9 @@ main{
         .fotosuperiores{
             height: 30vh;
             gap: 15px;
+            overflow-y: none;
+            align-items: center;
+
         }
         .foto{
             height: 160px;
@@ -236,6 +245,9 @@ main{
         .fotosuperiores{
             height: 27vh;
             gap: 15px;
+            overflow-y: none;
+            align-items: center;
+
         }
         .foto{
             height: 130px;
@@ -251,6 +263,10 @@ main{
             gap: 15px;
             padding: 17px;
             padding-bottom: 0;
+            overflow-y: none;
+            align-items: center;
+
+
         }
     
         .foto{
