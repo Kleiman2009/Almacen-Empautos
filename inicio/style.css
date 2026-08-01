@@ -1,296 +1,298 @@
+/* ==========================================
+   1. ESTILOS GENERALES Y BASE
+   ========================================== */
 *{ 
-     margin: 0; 
+    margin: 0; 
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Verdana, Georgia y Times New Roman;
+    font-family: Arial, Verdana, Georgia, sans-serif;
 }
+
 body {
     width: 100%;
-    overflow-x: hidden; /* Esto oculta la barra horizontal */
+    overflow-x: hidden; /* Oculta la barra de desplazamiento horizontal */
     background-image: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0,153,255,0.18), transparent 60%), 
-     radial-gradient(ellipse 70% 50% at 80% 40%, rgba(5,61,163,0.55), transparent 65%), 
-     linear-gradient(135deg, #020814 20%, #062c74 65%);
+                      radial-gradient(ellipse 70% 50% at 80% 40%, rgba(5,61,163,0.55), transparent 65%), 
+                      linear-gradient(135deg, #020814 20%, #062c74 65%);
 }
-header{
+
+header {
     background-color: #09101d;
     display: flex;
     justify-content: space-between;
     position: sticky;
-    z-index: 1000px;
-    top:0;
+    z-index: 1000;
+    top: 0;
     align-items: center;
     width: 100%;
-    height: 8vh;
-    padding-left: 1%;
-    box-sizing: border-box;
+    height: 70px; /* Altura fija para evitar deformaciones en móvil */
+    padding: 0 4%;
     font-weight: bold;
-    }
-
-.cajalogo{
-    width: auto;
-    height: 100%;
-} 
-.logo{
- height: 100%;
- width: 100%;
 }
-.menu{
-    display: flex;    
-    gap: 5%;
-    font-size: clamp(1px, 100% ,30px); 
-    box-sizing: border-box;
-    flex-shrink: 0;
-    width: 35%;
+
+.cajalogo {
+    display: flex;
+    align-items: center;
+    height: 85%;
+    width: auto;
+} 
+
+.logo {
     height: 100%;
-    text-align: center;
+    width: auto;
+    object-fit: contain;
+}
+
+.menu {
+    display: flex;    
+    gap: 20px;
+    font-size: 16px; 
+    width: auto; /* Se adapta dinámicamente al contenido */
+    height: 100%;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 3%;   
-    flex-wrap: wrap;
 }
-a{  
+
+a {  
     white-space: nowrap;
 }
-.catalogo{
-    text-decoration: none;
-    color: white ;
-}
-.comprar{
-   text-decoration: none;
-    color: white;
-}
-.nosotros{
+
+.catalogo, .comprar, .nosotros {
     text-decoration: none;
     color: white;
+    transition: color 0.3s ease;
 }
-main{
+
+.catalogo:hover, .comprar:hover, .nosotros:hover {
+    color: #0d53f6;
+}
+
+/* ==========================================
+   2. CONTENIDO PRINCIPAL (MAIN)
+   ========================================== */
+main {
     color: #000;
     text-align: center;
-    justify-content: center;
     width: 100%;
     height: auto;
-    margin-bottom: 20vh;    
-    }
-.contenedor-productos{
-    display: flex;
-    flex: 1;
+    margin-bottom: 5%;    
 }
-.flayer{
+
+.flayer {
     width: 100%;
-    height: auto
-    }
-.titulo{
-    margin-top: 2%;
-    font-size: clamp(2vw, 5vw, 3vw);
+    height: auto;
+    display: block;
+}
+
+.titulo {
+    margin-top: 4%;
+    font-size: clamp(24px, 4vw, 42px); /* Tamaño fluido y seguro */
     margin-bottom: 3%;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Le da profundidad */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
+
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+/* ==========================================
+   3. CONFIGURACIÓN DEL CARRUSEL
+   ========================================== */
 .carrusel-externo {
-    position: relative; /* Esto mantiene las flechas pegadas aquí */
+    position: relative;
     display: flex;
     align-items: center;
-    padding: 0  ;
+    width: 100%;
+    background-color: #09101d;
 }
+
 .flecha {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* Centrado vertical exacto */
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro suave */
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
-    z-index: 999999; /* Por encima de las tarjetas */
-    transition: all 0.3s ease;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
 }
+
 .flecha:hover {
-    background: #0d53f6; /* Rojo Malagón al pasar el mouse */
+    background: #0d53f6;
     transform: translateY(-50%) scale(1.1);
 }
-.flecha-izq { left: 20px; }
-.flecha-der { right: 20px; }
 
-.fotosuperiores{
-    margin: 0;
+.flecha-izq { left: 15px; }
+.flecha-der { right: 15px; }
+
+.fotosuperiores {
     width: 100%;
-    height: 70vh;
     display: flex;
     justify-content: flex-start; 
-    gap: 100px;
-    background-color:#09101d;
-    padding: 50px;
+    align-items: center;
+    gap: 40px; /* Reducido para evitar vacíos gigantes */
+    padding: 30px 60px;
     overflow-x: auto;  
-    overflow-y: none;
-    scrollbar-width: none;
+    scrollbar-width: none; /* Oculta barra en Firefox */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    position: relative; 
-    }
-.tarjeta-linea{
-    height: 100%;
-    margin: 0%;
 }
-/* La tarjeta que está en el centro (iluminada automáticamente) */
-.tarjeta-linea.activa{
-    opacity: 1;
-    z-index: 10;
-    box-shadow: 100px 100px 100px rgba(0, 0, 0, 0.6);
+
+.fotosuperiores::-webkit-scrollbar {
+    display: none; /* Oculta barra en Chrome/Safari */
 }
-.foto{
-    height: 90%;
-    width: auto;
+
+.tarjeta-linea {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.foto {
+    height: 220px; /* Tamaño unificado base */
+    width: 220px;
+    object-fit: cover;
     border-radius: 20%;
-    border:5px solid #172949;
-    overflow-y: none;      
+    border: 5px solid #172949;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;     
 }
-.foto:hover{
-    filter: brightness(1) saturate(1) grayscale(0);
+
+.foto:hover {
     transform: scale(1.05); 
-    box-shadow: 0 15px 30px rgb(0, 0, 0); 
-    z-index: 10; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6); 
 }
-.textotarjeta{
+
+.textotarjeta {
+    margin-top: 12px;
     color: white; 
-    font-weight:bold;
-    font-size: 20px; 
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 16px; 
+    letter-spacing: 1px;
 }
+
+/* ==========================================
+   4. SECCIÓN CONÓCENOS (INFERIOR)
+   ========================================== */
 .titulonosotros {
-    margin: 5%;
-    font-size: clamp(4vw, 5vw, 3vw);
+    margin: 6px 0 25px 0;
+    font-size: clamp(22px, 4vw, 36px);
     color: white;
 }
-.masabajo{
+
+.masabajo {
     display: flex;
     width: 100%;
-    height: 20%;    
     justify-content: center;
-    gap: 5%;
-    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 4%;
 }
-.contenedor-inferior-imagenes{
-        width:  45%;
-        display: flex;
-    }
-.imagenes-nosotros{
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        border: 4px solid #02172e;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
-        transition: box-shadow 0.3s ease-in-out;
-    }
+
+.contenedor-inferior-imagenes {
+    width: 45%;
+    display: flex;
+}
+
+.imagenes-nosotros {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 4px solid #02172e;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .imagenes-nosotros:hover {
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5), 0 6px 14px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
 }
-/*Media Queries*/
- @media(max-width:1100px){
-        .fotosuperiores{
-            height: 40vh;
-            overflow-y: none;
-            align-items: center;
 
-        }
-        .tarjeta-linea{
-            height: 80%;
-        }
-        .foto{
-            height: 250px;
-        }
+/* ==========================================
+   5. MEDIA QUERIES (ADAPTACIÓN MÓVIL)
+   ========================================== */
+
+/* Tabletas y pantallas medianas */
+@media (max-width: 900px) {
+    .foto {
+        height: 180px;
+        width: 180px;
     }
-   
-@media (max-width:800px){
-      .fotosuperiores{
-            height: 40vh;
-            gap: 17px;
-            overflow-y: none;
-            align-items: center;
-
-        }
-        .tarjeta-linea{
-            height: 80%;
-        }
-        .foto{
-            height: 220px;
-        }
+    .fotosuperiores {
+        gap: 30px;
+    }
 }
 
-@media (max-width:650px){
-        .fotosuperiores{
-            height: 30vh;
-            gap: 15px;
-            overflow-y: none;
-            align-items: center;
-
-        }
-        .foto{
-            height: 160px;
-        }
-        .textotarjeta{
-            font-size: 15px;
-        }
-}
-
-@media (max-width:530px){
-        .fotosuperiores{
-            height: 27vh;
-            gap: 15px;
-            overflow-y: none;
-            align-items: center;
-
-        }
-        .foto{
-            height: 130px;
-        }
-        .textotarjeta{
-            font-size: 12px;
-        }
-}
-
-@media (max-width:400px){
-        .fotosuperiores{
-            height: 20vh;
-            gap: 15px;
-            padding: 17px;
-            padding-bottom: 0;
-            overflow-y: none;
-            align-items: center;
-
-
-        }
-    
-        .foto{
-            height: 110px;
-        }
-        .textotarjeta{
-            font-size: 10px;
-            top: 10px;
-        }
-}
+/* Teléfonos Inteligentes (Celulares) */
 @media (max-width: 768px) {
-    .flecha { display: none; }
-}
-@media (max-width:700px) {
-    .header{
-        height: 5vh;
-        padding-left: 100px;
-        box-sizing: border-box;
-    }  
-    .menu{
-        font-size: 10px;
+    header {
+        height: 60px;
+        padding: 0 5%;
     }
-    .contenedor-inferior-imagenes{
-        width: 80%;
-    } 
+
+    .menu {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .flecha { 
+        display: none; /* Se ocultan las flechas porque en móvil se usa el dedo (touch) */
+    }
+
+    .fotosuperiores {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .foto {
+        height: 150px;
+        width: 150px;
+    }
+
+    .textotarjeta {
+        font-size: 14px;
+    }
+
+    /* Las imágenes de abajo se apilan una debajo de la otra en vez de ir en fila */
+    .masabajo {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-inferior-imagenes {
+        width: 90%; /* Ocupan casi todo el ancho de la pantalla del celular */
+    }
 }
-    
+
+/* Teléfonos muy pequeños */
+@media (max-width: 400px) {
+    .menu {
+        font-size: 13px;
+        gap: 10px;
+    }
+    .foto {
+        height: 130px;
+        width: 130px;
+    }
+    .textotarjeta {
+        font-size: 12px;
+    }
+}
+
