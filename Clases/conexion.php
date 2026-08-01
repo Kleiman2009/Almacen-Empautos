@@ -3,7 +3,7 @@ class Cconexion {
     // Agregamos "static" para poder llamarla con los dos puntos ::
     public static function ConexionBD() {
         
-       $host = "sql201.infinityfree.com";
+        $host = "sql201.infinityfree.com";
         $dbname = "if0_42532505_almacen";
         $username = "if0_42532505";
         $password = "ZdMTewqn7S3KS6";

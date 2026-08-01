@@ -9,81 +9,84 @@ body{
     text-decoration: none;
     height: 1000px;
 }
-/*empieza encabezado*/
-header{ 
+header { 
     background-color: #09101d;
     display: flex;
+    flex-wrap: wrap; /* Permite que el buscador baje de línea */
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     z-index: 1000;
-    top:0;
-    align-items: center;
+    top: 0;
     width: 100%;
-    height: 8vh;
-    padding-left: 1%;
+    padding: 10px;
     box-sizing: border-box;
     font-weight: bold;
 }
-.cajalogo{
+
+.cajalogo {
     margin: 0;
     width: auto;
-    height: 100%; 
+    height: 45px; 
+    order: 1; /* Logo arriba a la izquierda */
 }   
-.logo{
+
+.logo {
     height: 100%;
-    width: 100%;
+    width: auto;
 }
-/*buscador*/
-.buscador{
+
+.carrito {
+    height: 28px;   
+    width: auto;
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    cursor: pointer;
+    order: 2;
+      position: relative;
+    display: inline-block;
+
+}
+
+.carritoimg {
+    height: 100%;
+    filter: invert(1) brightness(100%);
+}
+
+#contador-carrito {
+    position: absolute;
+    top: -4px; 
+    right: -6px;
+    background: rgb(255, 145, 0);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 4px;
+    font-size: 7px;
+    font-weight: bold;
+}
+
+.buscador {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
-    height: 90%;
-    padding: 1vh  
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    order: 3; 
+    padding: 0;
 }
-.buscar{
+
+.buscar {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    padding-left: 3%;
+    padding-left: 15px;
     font-size: 100%;
     font-family: Arial, sans-serif;
     background-color: #172949;
     border: 1px solid white;
     color: #fff;
-}   
-/*carrito*/
-.carrito{
-    height: 100%;   
-    margin: 0%;
-    margin-right: 2%;
-    justify-content: center;
-     display: flex;
-     background-color: transparent;
-    align-items: center;
-}
-.carritoimg{
-    width: 90%;
-    height: 90%;
-    color: wheat;
-    margin-top: 4px;
-    filter: invert(1) brightness(100%);
-}
-#carrito {
-    position: relative;
-    display: inline-block;
-}
-#contador-carrito {
-    position: absolute;
-    top:5%; 
-    right: -4px;
-    background: rgb(255, 145, 0);
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    font-weight: bold;
 }
 .menu-lateral {
     position: fixed;
@@ -177,8 +180,9 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 45px;  /* Espacio reservado para la flecha izquierda */
+    padding-right: 45px; /* Espacio reservado para la flecha derecha */
+
 }
 .contenedor-categorias {
     display: flex;
@@ -186,6 +190,7 @@ header{
     scroll-behavior: smooth;
     width: 100%;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -208,21 +213,7 @@ header{
     color: #26eedb;
 }
 
-.flecha {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(9, 16, 29, 0.9);
-    color: white;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.1rem;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}  
+  
 .flecha-izq {
     left: 0;
 }
@@ -351,17 +342,52 @@ main{
     margin-bottom: 10px;
 }
 @media (min-width:1680px) {
-    .flecha{
-        display: none;
-    }
+     .flecha { display: none; }
+
     .panel-sub{
         justify-content: center;
         align-items: center;
         scroll-behavior: none;
     }
+  
+}
+@media (max-width:1680px){
+    .flecha {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(9, 16, 29, 0.9);
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 1.1rem;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .contenedor-categorias{
+        justify-content: flex-start; /* Alinea bien los elementos dentro del scroll */
+        margin-left: 0; /* Eliminamos el margen forzado que cortaba el texto */
+    }
 }
 /*MediaQueries*/ 
 @media (max-width:809px){
+
+    .contenedor-categorias{
+        justify-content: flex-start; /* Alinea bien los elementos dentro del scroll */
+        margin-left: 0; /* Eliminamos el margen forzado que cortaba el texto */
+        font-size: 20px;
+        height: 20px;
+    }
+    .flecha{
+        padding: 0%;
+    }
+    .btn-cat{
+        font-size: 0.7rem;
+    }
     .tarjeta-repuesto{
         width: 90%;
         flex-direction: row;
@@ -373,10 +399,47 @@ main{
     .info-repuesto{
         width: 50%;
     }
+    
+    
 }
+@media (min-width: 769px) {
 
-@media (max-width: 768px) {
-    .flecha { display: none; }
+    header {
+        flex-wrap: nowrap; /* Todo en una sola línea horizontal */
+        justify-content: space-between;
+        align-items: center;
+        height: 8vh;
+        padding: 0 1%;
+    }
+
+    .cajalogo {
+        height: 80%; /* Ajustado para que no choque con los bordes */
+        width: auto;
+        order: 1; /* 1. Logo a la izquierda */
+    }
+
+    .logo {
+        height: 100%;
+        width: auto;
+    }
+
+    .buscador {
+        width: 45%; /* Reducido para que no ocupe toda la pantalla en PC */
+        height: 70%;
+        margin-top: 0;
+        order: 2; /* 2. Buscador en el medio */
+    }
+
+    .buscar {
+        width: 100%;
+        height: 100%;
+    }
+
+    .carrito {
+        height: 80%;
+        order: 3; /* 3. Carrito al final (a la derecha del buscador) */
+    }
+
 } 
 
 @media (max-width:500px) {

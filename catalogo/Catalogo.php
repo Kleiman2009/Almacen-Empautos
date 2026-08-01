@@ -54,21 +54,23 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 </head>
 <body>
 <header> 
-<a href="/index.php" class="cajalogo">
-    <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
-    
-</a>                 
+    <!-- Logo -->
+    <a href="/index.php" class="cajalogo">
+        <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
+    </a>              
 
-<!-- Formulario del buscador con botón oculto para asegurar el envío al presionar Enter -->
-<form class="buscador" action="Catalogo.php" method="get">
-    <input class="buscar" name="q" id="inputBuscador" type="text" placeholder="Buscar repuesto..." value="<?php echo $termino; ?>">
-    <button type="submit" style="display: none;"></button>
-</form>
+    <!-- Carrito (en celular subirá visualmente gracias al CSS) -->
+    <a id="carrito" class="carrito" href="javascript:void(0)" onclick="toggleCarrito()">
+        <img class="carritoimg" src="/img/Multimedia/carrito.svg" alt="carrito">
+        <span id="contador-carrito"><?php echo $totalItems; ?></span>
+    </a>
 
-<a id="carrito" class="carrito" href="javascript:void(0)" onclick="toggleCarrito()">
-    <img class="carritoimg" src="/img/Multimedia/carrito.svg" alt="carrito">
-    <span id="contador-carrito"><?php echo $totalItems; ?></span>
-</a>
+    <!-- Buscador (en celular bajará a la siguiente línea) -->
+    <form class="buscador" action="Catalogo.php" method="get">
+        <input class="buscar" name="q" id="inputBuscador" type="text" placeholder="Buscar repuesto..." value="<?php echo $termino; ?>">
+        <button type="submit" style="display: none;"></button>
+    </form>
+</header>
 
 <div id="menu-carrito" class="menu-lateral"> 
     <div class="menu-header">
@@ -115,7 +117,6 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         </button>
     </div>
 </div>
-</header>
 
 <nav class="barra-productos">
     <button class="flecha flecha-izq" onclick="scrollCarrusel(-1)">&#10094;</button>
