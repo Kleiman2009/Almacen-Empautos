@@ -151,8 +151,10 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
                 <img src="<?php echo $prod->GetImagen_Url(); ?>" alt="<?php echo $prod->GetNombre(); ?>">
             </a>
             <div class="info-repuesto">
-                <h3 class="producto-titulo"><?php echo $prod->GetNombre(); ?></h3>
-                <p class="marca">Marca: <?php echo $prod->GetMarca_Producto(); ?></p>   
+            <div class="producto-titulo">    
+            <h3 ><?php echo $prod->GetNombre(); ?></h3>
+            </div>
+            <p class="marca">Marca: <?php echo $prod->GetMarca_Producto(); ?></p>   
                 <p class="tipo">Tipo: <?php echo $prod->GetCategoria(); ?></p>   
                 <div class="contenedor-btn">
                     <div class="card-acciones">

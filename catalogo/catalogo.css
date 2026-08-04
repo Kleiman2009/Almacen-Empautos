@@ -1,18 +1,20 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-body{
+
+body {
     background-color: #172949;
     text-decoration: none;
     height: 1000px;
 }
-header { 
+
+header {
     background-color: #09101d;
     display: flex;
-    flex-wrap: wrap; /* Permite que el buscador baje de línea */
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     position: sticky;
@@ -27,9 +29,9 @@ header {
 .cajalogo {
     margin: 0;
     width: auto;
-    height: 45px; 
-    order: 1; /* Logo arriba a la izquierda */
-}   
+    height: 45px;
+    order: 1;
+}
 
 .logo {
     height: 100%;
@@ -37,16 +39,13 @@ header {
 }
 
 .carrito {
-    height: 28px;   
+    height: 28px;
     width: auto;
-    display: flex;
     background-color: transparent;
-    align-items: center;
     cursor: pointer;
     order: 2;
-      position: relative;
+    position: relative;
     display: inline-block;
-
 }
 
 .carritoimg {
@@ -56,7 +55,7 @@ header {
 
 #contador-carrito {
     position: absolute;
-    top: -4px; 
+    top: -4px;
     right: -6px;
     background: rgb(255, 145, 0);
     color: white;
@@ -73,7 +72,7 @@ header {
     width: 100%;
     height: 30px;
     margin-top: 10px;
-    order: 3; 
+    order: 3;
     padding: 0;
 }
 
@@ -88,6 +87,7 @@ header {
     border: 1px solid white;
     color: #fff;
 }
+
 .menu-lateral {
     position: fixed;
     top: 0;
@@ -98,13 +98,15 @@ header {
     color: white;
     transition: 0.4s ease;
     z-index: 3000;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
 }
+
 .menu-lateral.active {
-    right: 0; 
-}   
+    right: 0;
+}
+
 .menu-header {
     padding: 20px;
     background-color: #0d1b2a;
@@ -113,6 +115,7 @@ header {
     align-items: center;
     border-bottom: 2px solid #4dfff6;
 }
+
 .btn-cerrar {
     background: none;
     border: none;
@@ -120,10 +123,11 @@ header {
     font-size: 30px;
     cursor: pointer;
 }
+
 .menu-body {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 20px;   
+    padding: 20px;
 }
 
 .btn-eliminar-item {
@@ -133,7 +137,7 @@ header {
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
-    padding: 4px 8px; 
+    padding: 4px 8px;
     border-radius: 5px;
     transition: all 0.2s ease;
 }
@@ -143,6 +147,7 @@ header {
     color: #ff7373;
     transform: scale(1.1);
 }
+
 .item-carrito-menu {
     display: flex;
     justify-content: space-between;
@@ -150,10 +155,12 @@ header {
     border-bottom: 1px solid #415a77;
     font-size: 0.9rem;
 }
+
 .menu-footer {
     padding: 10px;
     background-color: #0d1b2a;
 }
+
 .btn-finalizar {
     width: 100%;
     padding: 15px;
@@ -165,13 +172,14 @@ header {
     cursor: pointer;
     transition: 0.3s;
 }
+
 .btn-finalizar:hover {
     background-color: #4dfff6;
     transform: scale(1.02);
 }
 
-/*Barra Sub-Categorias */
-.barra-productos{
+/* Barra Sub-Categorias */
+.barra-productos {
     position: relative;
     width: 100%;
     background-color: #415a77;
@@ -180,10 +188,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 45px;  /* Espacio reservado para la flecha izquierda */
-    padding-right: 45px; /* Espacio reservado para la flecha derecha */
-
+    padding-left: 45px;
+    padding-right: 45px;
 }
+
 .contenedor-categorias {
     display: flex;
     overflow-x: auto;
@@ -195,6 +203,7 @@ header {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+
 .contenedor-categorias::-webkit-scrollbar {
     display: none;
 }
@@ -209,14 +218,15 @@ header {
     font-size: 0.9rem;
     transition: color 0.2s;
 }
+
 .btn-cat:hover {
     color: #26eedb;
 }
 
-  
 .flecha-izq {
     left: 0;
 }
+
 .flecha-der {
     right: 0;
 }
@@ -224,12 +234,13 @@ header {
 .panel-sub {
     display: none;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 20px;
     padding: 20px;
     align-items: center;
     height: 100%;
 }
+
 .card-subcategoria {
     background-color: #1a2537;
     border: 1px solid #334155;
@@ -241,47 +252,52 @@ header {
     cursor: pointer;
     transition: transform 0.3s, border-color 0.3s;
 }
-.imagen-sub-categoria {
-    width: 250px;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 10px;
-}
-.nombre-sub-categoria {
-    display: block;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
+
 .card-subcategoria:hover {
     transform: translateY(-5px);
     border-color: #40e0d0;
     box-shadow: 0 5px 15px rgba(64, 224, 208, 0.2);
 }
 
-/*Cuerpo de la pagina*/
-main{
+.imagen-sub-categoria {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.nombre-sub-categoria {
+    display: block;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Cuerpo de la pagina */
+main {
     background-color: #172949;
     color: white;
     overflow: hidden;
     width: 100%;
     box-sizing: border-box !important;
-}  
+}
+
 .contenedor-productos {
     display: flex !important;
-    flex-direction: row; 
-    flex-wrap: wrap;    
-    justify-content: center; 
-    gap: 30px;         
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
     padding: 50px 20px;
     width: 100%;
     height: auto;
-    background-color: #172949; 
+    background-color: #172949;
     box-sizing: border-box;
     margin-top: 20px;
 }
+
 .tarjeta-repuesto {
-    background: #0d1b33; 
+    background: #0d1b33;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 20px;
     width: 350px;
@@ -296,67 +312,76 @@ main{
     padding: 12px;
     overflow: hidden;
 }
+
 .tarjeta-repuesto:hover {
-    transform: translateY(-10px); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
-    border-color: #4dfff6; 
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: #4dfff6;
 }
+
 .tarjeta-repuesto img {
-    width: auto; 
+    width: auto;
     height: 200px;
-    object-fit: contain; 
-    background: transparent; 
+    object-fit: contain;
+    background: transparent;
     border-radius: 5px;
 }
+
 .info-repuesto {
     margin-top: 10px;
     background: #172949;
     border-radius: 10px;
     padding: 12px;
-    box-sizing: border-box;    
+    box-sizing: border-box;
 }
-.producto-titulo {
+
+.producto-titulo,
+.producto-titulo h3 {
     display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;  
-    overflow: hidden; 
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1rem; 
-    line-height: 1.3; 
+    font-size: 1rem;
+    line-height: 1.3;
     margin-bottom: 12px;
-    max-height: 3.9em; 
+    max-height: 3.9em;
 }
-.marca{
+
+.marca,
+.tipo {
     color: #949799;
 }
-.tipo{
-    color: #949799;
-}
-.contenedor-btn{
+
+.contenedor-btn {
     width: 100%;
     justify-content: center;
     align-items: center;
-    height: 40px;   
+    height: 40px;
     display: flex;
     margin-top: 15px;
     margin-bottom: 10px;
 }
-@media (min-width:1680px) {
-     .flecha { display: none; }
 
-    .panel-sub{
+/* MediaQueries */
+@media (min-width: 1680px) {
+    .flecha {
+        display: none;
+    }
+
+    .panel-sub {
         justify-content: center;
         align-items: center;
-        scroll-behavior: none;
+        scroll-behavior: auto;
     }
-  
 }
-@media (max-width:1680px){
+
+@media (max-width: 1680px) {
     .flecha {
         position: absolute;
         top: 0;
         bottom: 0;
-        background-color: rgba(9, 16, 29, 0.9);
+        background-color: transparent;
         color: white;
         border: none;
         cursor: pointer;
@@ -368,44 +393,15 @@ main{
         justify-content: center;
     }
 
-    .contenedor-categorias{
-        justify-content: flex-start; /* Alinea bien los elementos dentro del scroll */
-        margin-left: 0; /* Eliminamos el margen forzado que cortaba el texto */
+    .contenedor-categorias {
+        justify-content: flex-start;
+        margin-left: 0;
     }
 }
-/*MediaQueries*/ 
-@media (max-width:809px){
 
-    .contenedor-categorias{
-        justify-content: flex-start; /* Alinea bien los elementos dentro del scroll */
-        margin-left: 0; /* Eliminamos el margen forzado que cortaba el texto */
-        font-size: 20px;
-        height: 20px;
-    }
-    .flecha{
-        padding: 0%;
-    }
-    .btn-cat{
-        font-size: 0.7rem;
-    }
-    .tarjeta-repuesto{
-        width: 90%;
-        flex-direction: row;
-        justify-content: center;
-    }
-    .tarjeta-repuesto a{
-        width: 50%;
-    }    
-    .info-repuesto{
-        width: 50%;
-    }
-    
-    
-}
 @media (min-width: 769px) {
-
     header {
-        flex-wrap: nowrap; /* Todo en una sola línea horizontal */
+        flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
         height: 8vh;
@@ -413,9 +409,9 @@ main{
     }
 
     .cajalogo {
-        height: 80%; /* Ajustado para que no choque con los bordes */
+        height: 80%;
         width: auto;
-        order: 1; /* 1. Logo a la izquierda */
+        order: 1;
     }
 
     .logo {
@@ -424,10 +420,10 @@ main{
     }
 
     .buscador {
-        width: 45%; /* Reducido para que no ocupe toda la pantalla en PC */
+        width: 45%;
         height: 70%;
         margin-top: 0;
-        order: 2; /* 2. Buscador en el medio */
+        order: 2;
     }
 
     .buscar {
@@ -437,20 +433,89 @@ main{
 
     .carrito {
         height: 80%;
-        order: 3; /* 3. Carrito al final (a la derecha del buscador) */
+        order: 3;
+    }
+}
+
+@media (max-width: 809px) {
+    .contenedor-categorias {
+        justify-content: flex-start;
+        margin-left: 0;
+        font-size: 20px;
+        height: 20px;
     }
 
-} 
+    .flecha {
+        padding: 0%;
+    }
 
-@media (max-width:500px) {
-    .tarjeta-repuesto{
+    .btn-cat {
+        font-size: 0.7rem;
+    }
+
+    .tarjeta-repuesto {
+        width: 90%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .tarjeta-repuesto a {
+        width: 50%;
+    }
+
+    .info-repuesto {
+        width: 50%;
+    }
+
+    .card-subcategoria {
+        width: 150px;
+        height: 150px;
+    }
+
+    .imagen-sub-categoria {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media (max-width: 500px) {
+    .tarjeta-repuesto {
         flex-direction: column;
+        width: 45%;
+        margin: 0;
     }
-    .tarjeta-repuesto a{
+
+    .info-repuesto {
         width: 100%;
+        margin: 0px;
+        padding: 2%;
+        padding-top: 0%;
     }
-    .info-repuesto{
-       width: 100%;
-       height: 30%;
+
+    .info-repuesto p {
+        display: none;
+    }
+
+    .producto-titulo {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        margin-top: 7%;
+        margin-bottom: -30%;
+    }
+
+    .producto-titulo h3 {
+        font-size: 10px;
+    }
+
+    .card-acciones,
+    .card-acciones a {
+        display: none;
+    }
+}
+
+@media (max-width: 350px) {
+    .tarjeta-repuesto {
+        width: 43%;
     }
 }

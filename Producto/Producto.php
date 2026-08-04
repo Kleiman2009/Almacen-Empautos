@@ -65,9 +65,13 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- <--- ESTO ES LO QUE OBLIGA A FUNCIONAR EL RESPONSIVE -->
     <title><?php echo $repuesto ? htmlspecialchars($repuesto->GetNombre()) : 'Producto'; ?> - Repuestos Malagón</title>
     <link rel="stylesheet" href="Producto.css">
+    <!-- ... resto de tus scripts y estilos ... -->
+</head>
     <script>
     // Función de WhatsApp sincronizada con el JSON del carrito PHP
     function enviarWhatsApp(boton) {
@@ -193,7 +197,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         </div>
     </div>
     
-    <hr>
+    <!-- (AQUÍ ESTABA EL <hr> SUELTO QUE SE ELIMINÓ) -->
 
     <div class="producto-info-compra">
         <h1><?php echo $repuesto ? htmlspecialchars($repuesto->GetNombre()) : ''; ?></h1>
@@ -244,8 +248,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         </form>
     </div>   
 </div>
-</main>
-    
+</main>    
 <script src="Producto.js"></script>
 </body>
 </html>

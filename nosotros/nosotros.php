@@ -20,7 +20,7 @@
 
     <nav class="menu">
 
-        <a  class="catalogo" href="/./inicio/index.php">INICIO</a>
+        <a  class="catalogo" href="/index.php">INICIO</a>
         <a  class="catalogo" href="/./catalogo/Catalogo.php">CATALOGO</a>
         <a  class="nosotros" href="#">NOSOTROS</a>
     

@@ -32,3 +32,8 @@ function scrollCarrusel(direccion) {
         }
     }, 500); // El tiempo debe coincidir con la suavidad del scroll
 }
+
+function toggleMenuNavegacion() {
+    const menu = document.getElementById('menuNavegacion');
+    menu.classList.toggle('active');
+}

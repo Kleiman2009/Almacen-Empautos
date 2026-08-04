@@ -9,15 +9,28 @@
 </head>
 <body>
     
-<header> 
-    <a class="cajalogo" href="#">
+<header>
+    <!-- Logo -->
+    <a href="/index.php" class="cajalogo">
         <img class="logo" src="/img/Multimedia/logo.png" alt="logo">
-    </a>
+    </a>         
 
-    <nav class="menu">
-        <a class="catalogo" href="#">INICIO</a>
-        <a class="catalogo" href="/catalogo/Catalogo.php">CATALOGO</a>
-        <a class="nosotros" href="nosotros/nosotros.php">NOSOTROS</a>
+    <!-- Botón de Hamburguesa -->
+    <button class="btn-hamburguesa" onclick="toggleMenuNavegacion()">
+        &#9776;
+    </button>
+
+    <!-- Menú Lateral / Enlaces -->
+    <nav class="menu" id="menuNavegacion">
+        <!-- Botón para cerrar el menú dentro del panel -->
+        <div class="menu-header-movil" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 15px 20px; border-bottom: 1px solid #1a2a47;">
+            <span style="color: white; font-weight: bold;">Menú</span>
+            <button class="btn-cerrar-menu" onclick="toggleMenuNavegacion()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer;">&times;</button>
+        </div>
+
+        <a href="/index.php" class="catalogo">INICIO</a>
+        <a href="/catalogo/Catalogo.php" class="comprar">CATÁLOGO</a>
+        <a href="/nosotros/nosotros.php" class="nosotros">NOSOTROS</a>
     </nav>
 </header>
 
@@ -120,7 +133,7 @@
     <!-- Secciones Inferiores -->
     <h1 class="titulonosotros">CÓNOCENOS UN POCO</h1>
     <section class="masabajo">
-        <a class="contenedor-inferior-imagenes" href="https://google.com" target="_blank" rel="noopener noreferrer">
+        <a class="contenedor-inferior-imagenes" href="https://www.google.com/maps/place/repuestos+malagon/@3.9025118,-76.2945344,17z/data=!3m1!4b1!4m6!3m5!1s0x8e39e78af9f7b487:0x108e2c1a504c05f3!8m2!3d3.9025118!4d-76.2945344!16s%2Fg%2F11ygd9hkv5?entry=ttu&g_ep=EgoyMDI2MDgwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
             <img class="imagenes-nosotros" src="/img/Multimedia/ubicacionv2.jpg" alt="Ubicación">
         </a>
         <a class="contenedor-inferior-imagenes" href="/catalogo/Catalogo.php">
