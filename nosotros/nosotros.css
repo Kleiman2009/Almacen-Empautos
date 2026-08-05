@@ -1,326 +1,386 @@
-*{  margin: 0; 
+/* --- CONFIGURACIÓN GLOBAL --- */
+* { 
+    margin: 0; 
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Verdana, Georgia y Times New Roman;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
-    body {
-  width: 100%;
-  overflow-x: hidden; /* Esto oculta la barra horizontal */
-  background-image: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0,153,255,0.18), transparent 60%), 
-     radial-gradient(ellipse 70% 50% at 80% 40%, rgba(5,61,163,0.55), transparent 65%), 
-     linear-gradient(135deg, #020814 20%, #062c74 65%);
-
-
+body {
+    width: 100%;
+    overflow-x: hidden;
+    background-image: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0,153,255,0.18), transparent 60%), 
+                      radial-gradient(ellipse 70% 50% at 80% 40%, rgba(5,61,163,0.55), transparent 65%), 
+                      linear-gradient(135deg, #020814 20%, #062c74 65%);
+    background-attachment: fixed;
+    color: #fff;
 }
-  
-header{
-        background-color: #09101d;
-        display: flex;
-        justify-content: space-between;
-        position: sticky;
-        z-index: 1000px;
-        top:0;
-        align-items: center;
-        width: 100%;
-        height: 8vh;
-       padding-left: 1%;
-        box-sizing: border-box;
-        font-weight: bold;
-    }
 
-@media (max-width:700px) {
-    .header{
-        height: 5vh;
-        padding-left: 100px;
-        box-sizing: border-box;
-    }       
-    }
+/* --- HEADER --- */
+header {
+    background-color: #09101d;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    padding: 0 4%;
+    font-weight: bold;
+}
 
+.cajalogo {
+    display: flex;
+    align-items: center;
+    height: 85%;
+    width: auto;
+} 
 
-.cajalogo{
+.logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.menu {
+    display: flex;    
+    gap: 20px;
+    font-size: 16px; 
     width: auto;
     height: 100%;
-}
-    
-.logo{
- height: 100%;
- width: 100%;
-}
-
-.menu{
-    display: flex;    
-    gap: 5%;
-    font-size: clamp(1px, 100% ,30px); 
-    box-sizing: border-box;
-    flex-shrink: 0;
-    width: 35%;
-    height: 100%;
-    text-align: center;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 3%;    
-    flex-wrap: wrap;
-    
-
 }
 
-@media (max-width:700px){
-.menu{
-    font-size: 10px;
-}
-}
-a{  
+a {  
     white-space: nowrap;
 }
 
-.catalogo{
-    text-decoration: none;
-    color: white ;
-}
-
-.comprar{
+.catalogo, .comprar, .nosotros {
     text-decoration: none;
     color: white;
+    transition: color 0.3s ease;
 }
 
-.nosotros{
-    text-decoration: none;
+.catalogo:hover, .comprar:hover, .nosotros:hover {
+    color: #0d53f6;
+}
+
+.btn-hamburguesa {
+    display: none; 
+    background: none;
+    border: none;
     color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.menu-header-movil {
+    display: none !important;
 }
 
 
+/* --- MAIN Y BANNER --- */
+main {
+    width: 100%;
+}
 
+.banner-container {
+    width: 100%;
+    overflow: hidden;
+}
 
+.banner {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-    main{
- 
-        color: #000;
-        text-align: center;
-        justify-content: center;
-        width: 100%;
-        height: auto;
-    
+/* --- SECCIÓN PROPÓSITO (Misión / Visión) --- */
+.proposito {
+    width: 100%;
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.nuestro {
+    color: #f8fafc;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.vision {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mision {
+    background: linear-gradient(145deg, rgba(2, 12, 38, 0.9), rgba(1, 6, 20, 0.9));
+    border-radius: 14px;
+    padding: 30px;
+    text-align: left;
+    border: 1px solid rgba(16, 157, 208, 0.3);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.mision:hover {
+    transform: translateY(-5px);
+    border-color: rgba(16, 157, 208, 0.8);
+}
+
+.titulo-mision {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titulo-mision h2 {
+    font-size: 1.4rem;
+    color: #f8fafc;
+}
+
+.figurita {
+    height: 45px;
+    width: 45px;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.figurita img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mision p {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* --- SECCIÓN HISTORIA --- */
+.historia { 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #020814;
+}
+
+.nuestra-historia {
+    width: 100%;
+    padding: 50px 20px;
+    text-align: center;
+    background: linear-gradient(to bottom, #020814, #02152a);
+}
+
+.nuestra-historia h2 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.nuestra-historia span {
+    color: #38bdf8;
+}
+
+.linea-decorativa {
+    width: 60px;
+    height: 4px;
+    background-color: #38bdf8;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.nuestra-historia h3 {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.text {
+    padding: 20px 25px 60px 25px;
+    width: 100%;
+    font-size: 0.98rem;
+    color: #cbd5e1;
+    background-color: #02152a; 
+    line-height: 1.8;
+}
+
+.text p {
+    margin-bottom: 20px;
+}
+
+.datos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.daticos {
+    text-align: center;
+}
+
+.numero-grande {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #38bdf8;
+    line-height: 1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.daticos p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* --- SECCIÓN PROMOCIÓN / CTA --- */
+.promocion {
+    background-image: linear-gradient(rgba(2, 8, 20, 0.85), rgba(2, 8, 20, 0.85)), url('/img/Multimedia/catalogov2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    min-height: 400px;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.promocion-contenido {
+    max-width: 800px;
+    width: 100%;
+}
+
+.promocion h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.promocion p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.promocion-inferior {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.ver-catalogo, .escribenos {
+    background-color: #0284c7;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 230px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.ver-catalogo:hover, .escribenos:hover {
+    transform: translateY(-2px);
+}
+
+.ver-catalogo {
+    background-color: #0369a1;
+}
+
+.ver-catalogo:hover {
+    background-color: #0284c7;
+}
+
+.escribenos {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.escribenos:hover {
+    background: #ffffff;
+}
+
+.escribenos img {
+    width: 22px;
+    margin-right: 10px;
+}
+
+/* --- MEDIA QUERIES PARA ESCRITORIO (PC) --- */
+@media (min-width: 768px) {
+    .nuestro {
+        font-size: 2.8rem;
     }
- 
 
-    img{
-        width: 100%;
-        height: auto;
+    .vision {
+        flex-direction: row;
     }
 
-
-    .proposito{
- 
-        height: auto;
-        width:  100%;
-        align-items: center;
-        justify-content: center;
-        gap: 10% ;
-        padding-top: 100px;
-        padding-bottom: 100px;
+    .mision {
+        width: 50%;
     }
 
-   
-
-    .nuestro{
-        color: aliceblue;
-        font-size: 50px;
-        font-weight: 900;
-       
+    .historia {
+        flex-direction: row;
     }
-    .vision{
+
+    .nuestra-historia {
+        width: 35%;
+        text-align: left;
+        padding: 80px 40px;
         display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        gap: 4%  ;
-        height: 400px;
-        margin-top: 5%;
-        
-    }
-    .mision{
-        background: rgb(0, 10, 35);
-        height: 100%;
-        width: 45%;
-        color: #fff;
-        border-radius: 10px;
-        padding: 3%;
-        text-align: start;
-        outline: 1px solid rgb(16, 157, 208); 
-        line-height: 1.7;
-    }
-
-    .figurita{
-        height: 40px;
-        width: 40px;
-        background-color: #007bff;
-        padding: 5px;
-        border-radius: 10px;
-    }
-
-    .titulo-mision{
-        
-        display: flex;
-        gap: 10px;
-        width: 100%;
-        height: auto;
-        align-items: center;
-         font-weight: 900;
-    }
-    .historia{  
-        display: flex;
-     
-      
-    }
-
-    .nuestra-historia{
-        width: 30%;
-        font-size: 30px;
-        color: #fff;
-        text-align: start;
-        padding-left: 20px;
-        padding-top: 70px;
-        padding-bottom: 70px;
-       
-    }
-    .nuestra-historia span{
-        color: aqua;
-    }
-    .nuestra-historia h3{
-        font-size: 15px;
-        color: gray;
-        font-weight: 100;
-        margin-top: 20px;
-    }
-    .nuestra-historia hr{
-        width: 90%;
-       
-    }
-    .text{
-        padding-top: 50px;
-        padding-bottom: 70px;
-        padding-left: 90px;
-        padding-right: 90px;
-        width: 70%;
-        height: 100%;
-        font-size: 15px;
-        font-weight:lighter;   
-        color: #fff;
-        background-color: #02152a; 
-        text-align: start;
-
-    }
-    .text hr{
-        margin-top: 50px;
-    }
-
-    .datos{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding-top: 3%;
-        gap: 0;
-    }
-
-    .daticos{
-        justify-content: center;
-        gap: 0;    
-    }
-
-    .daticos h1{
-        color: aqua;
-    }
-
-    
-    
-
-    .daticos p{
-        color: rgb(135, 135, 135);
-        font-weight: 100;
-        margin-top: 0%;
-
-    }
-
-
-
-    .promocion{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7 )), url(/img/Multimedia/catalogov2.png) ;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        height: 500px;  
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
-        flex-wrap: wrap;
-        }
-
-    .promocion h1, p{
-        color: #fff;
-    }
-
-    .promocion-inferior{
-        display: flex;
-        width: 100%;
         justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin-top: 20px;
-        flex-wrap: wrap;
-        color: #fff;
-    }
-    .ver-catalogo{
-        background-color: #062c74;
-        padding: 10px;
-        border-radius: 10px;
-        font-size: small;
-        height: 50px;
-        width: 18%;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        display: flex;
     }
 
-    .escribenos{
-        display: flex;
-        background: #fcfcfc;
-        padding: 10px;
-        color: #000;
-        height: 50px;
-        border-radius: 10px;
-        width: 18%;
-       font-size: small;
-        justify-content: center;
-        text-align: center;
-        box-sizing: border-box;
-        gap: 10px   ;
-        align-items: center;
+    .nuestra-historia h2 {
+        font-size: 2.5rem;
     }
 
-    .escribenos img{
-
-        width: 8%;
+    .linea-decorativa {
+        margin: 15px 0;
     }
 
+    .text {
+        width: 65%;
+        padding: 80px 60px;
+        font-size: 1.05rem;
+    }
 
+    .promocion h1 {
+        font-size: 2.4rem;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .ver-catalogo, .escribenos {
+        width: 200px;
+    }
+}
