@@ -35,6 +35,7 @@
     </nav>
 </header>
 
+
     <!-- Main Content -->
     <main>
         <!-- Banner Principal -->
@@ -117,6 +118,6 @@
     include __DIR__ . '/../inicio/footer.php';
     ?>
 
-    <script src="script.js"></script> 
+    <script src="/nosotros/nosotros.js"></script> 
 </body>
 </html>

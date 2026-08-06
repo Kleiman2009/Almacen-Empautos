@@ -337,6 +337,8 @@ main {
 
 /* --- MEDIA QUERIES PARA ESCRITORIO (PC) --- */
 @media (min-width: 768px) {
+ 
+ 
     .nuestro {
         font-size: 2.8rem;
     }
@@ -382,5 +384,52 @@ main {
 
     .ver-catalogo, .escribenos {
         width: 200px;
+    }
+}
+
+
+@media (max-width:764px) {
+     .btn-hamburguesa {
+        display: block;
+    }
+
+    .menu-header-movil {
+        display: flex !important;
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background-color: #09101d;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 0;
+        gap: 0;
+        z-index: 4000;
+        transition: 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .menu.active {
+        right: 0;
+    }
+
+    .menu a, .catalogo, .comprar, .nosotros {
+        padding: 15px 20px;
+        width: 100%;
+        border-bottom: 1px solid #1a2a47;
+    }
+
+    .menu a:hover {
+        background-color: #172949;
+    }
+
+    header {
+        height: 60px;
+        padding: 0 5%;
     }
 }
