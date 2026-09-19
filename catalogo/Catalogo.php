@@ -113,7 +113,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
             class="btn-finalizar" 
             id="finalizar-compra" 
             data-productos="<?php echo $base64Productos; ?>">
-            Finalizar Compra
+            Finalizar Compra en WhatsApp
         </button>
     </div>
 </div>
@@ -154,8 +154,8 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
             <div class="producto-titulo">    
             <h3 ><?php echo $prod->GetNombre(); ?></h3>
             </div>
-            <p class="marca">Marca: <?php echo $prod->GetMarca_Producto(); ?></p>   
-                <p class="tipo">Tipo: <?php echo $prod->GetCategoria(); ?></p>   
+            <p class="marca">Referencia: <?php echo $prod->GetReferencia(); ?></p>   
+            <p class="marca">marca: <?php echo $prod->GetMarca_Producto(); ?></p>    
                 <div class="contenedor-btn">
                     <div class="card-acciones">
                         <a href="../Producto/Producto.php?id=<?php echo $prod->GetId(); ?>" class="btn-ver-mas">

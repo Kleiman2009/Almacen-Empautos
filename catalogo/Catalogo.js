@@ -25,7 +25,7 @@ const subdatos = {
         {nombre: 'Fan Clutch',  img: '/img/Productos/Refrigeracion/Fan_clutch/Portada.png'},
     ],
     'suspencion': [ 
-        { nombre: 'Rótulas', img: '/img/Productos/suspencion/rotulas/Portada.png'},
+        { nombre: 'Rótula', img: '/img/Productos/suspencion/rotulas/Portada.png'},
         { nombre: 'Amortiguadores', img: '/img/Productos/suspencion/amortiguadores/Portada.png' },
         { nombre: 'Terminales', img:'/img/Productos/suspencion/terminales/Portada.png' },
         { nombre: 'Tijeras', img: '/img/Productos/suspencion/Tijeras de Suspencion/Portada.png' },
@@ -187,7 +187,7 @@ function enviarWhatsApp(boton) {
         return;
     }
 
-    let mensaje = "¡Hola Repuestos Malagón! 👋 Quiero realizar el siguiente pedido:\n\n";
+    let mensaje = "¡Hola Repuestos Malagón! Quiero realizar el siguiente pedido:\n\n";
     
     carrito.forEach(item => {
         let nombre = item.Nombre || item.nombre || item.nombre_producto || "Repuesto";

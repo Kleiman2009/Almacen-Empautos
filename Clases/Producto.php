@@ -1,7 +1,8 @@
- <?php 
-    class producto{ 
+<?php 
+    class producto { 
 
         protected $id;
+        protected $grupo;
         protected $Nombre;
         protected $Descripcion;
         protected $Marca_Producto;
@@ -12,9 +13,11 @@
         protected $Categoria;
         protected $Sub_Categoria;
 
-        function __construct($id, $Nombre, $Descripcion, $Marca_Producto, $Marca_Vehiculo, $Presentacion, $imagen_url, $referencia, $Categoria, $Sub_Categoria)
+        // Definimos $grupo = null por seguridad para que no rompa llamadas con 10 argumentos
+        function __construct($id, $grupo = null, $Nombre, $Descripcion, $Marca_Producto, $Marca_Vehiculo, $Presentacion, $imagen_url, $referencia, $Categoria, $Sub_Categoria)
         {
             $this->id = $id;
+            $this->grupo = $grupo;
             $this->Nombre = $Nombre;
             $this->Descripcion = $Descripcion;
             $this->Marca_Producto = $Marca_Producto;
@@ -30,85 +33,76 @@
             return $this->id;
         }
 
+        public function GetGrupo(){
+            return $this->grupo;
+        }
         
         public function GetNombre(){    
             return $this->Nombre;
         }
-
         
         public function GetDescripcion(){
             return $this->Descripcion;
         }
-
         
         public function GetMarca_Producto(){
             return $this->Marca_Producto;
         }
-
         
         public function GetMarca_Vehiculo(){
             return $this->Marca_Vehiculo;
         }
-
         
         public function GetPresentacion(){
-            return $this->id;
+            return $this->Presentacion; 
         }
-
         
         public function Getimagen_Url(){
             return $this->imagen_url;
         }
-
         
         public function GetReferencia(){
             return $this->referencia;
         }
-
         
         public function GetCategoria(){
             return $this->Categoria;
         }
-
         
         public function GetSub_Categoria(){
             return $this->Sub_Categoria;
         }
 
-        // Añade esto dentro de la clase Producto, al final
-public static function buscarPorId($id, $pdo) {
-    // 1. Preparar la consulta SQL para evitar inyecciones
-    $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = :id");
-    $stmt->execute(['id' => $id]);
-    
-    // 2. Obtener el resultado como un array asociativo
-    $datos = $stmt->fetch(PDO::getAvailableDrivers() ? PDO::FETCH_ASSOC : PDO::FETCH_ASSOC); 
-    
-    // Si no se encuentra el producto, retornamos null
-    if (!$datos) {
-        return null; 
-    }
-    
-    // 3. Retornar una nueva instancia de la clase con los datos reales de la BD
-    return new self(
-        $datos['id'],
-        $datos['nombre'],
-        $datos['descripcion'],
-        $datos['marca_producto'],
-        $datos['marca_vehiculo'],
-        $datos['presentacion'],
-        $datos['imagen_url'],
-        $datos['referencia'],
-        $datos['categoria'],
-        $datos['sub_categoria']
-    );
-    
-}
+        public static function buscarPorId($id, $pdo) {
+            $stmt = $pdo->prepare("SELECT * FROM productos WHERE id = :id");
+            $stmt->execute(['id' => $id]);
+            
+            $datos = $stmt->fetch(PDO::FETCH_ASSOC); 
+            
+            if (!$datos) {
+                return null; 
+            }
+            
+            // Usamos operador de fusión de null por si la columna no viniera en alguna fila
+            return new self(
+                $datos['id'] ?? null,
+                $datos['grupo'] ?? null,
+                $datos['nombre'] ?? '',
+                $datos['descripcion'] ?? '',
+                $datos['marca_producto'] ?? '',
+                $datos['marca_vehiculo'] ?? '',
+                $datos['presentacion'] ?? '',
+                $datos['imagen_url'] ?? '',
+                $datos['referencia'] ?? '',
+                $datos['categoria'] ?? '',
+                $datos['sub_categoria'] ?? ''
+            );
+        }
 
-public static function obtenerImagenesPorId($id, $pdo) {
-    $stmt = $pdo->prepare("SELECT ruta_imagen FROM imagenes WHERE producto_id = :id");
-    $stmt->execute(['id' => $id]);
-    return $stmt->fetchAll(PDO::FETCH_COLUMN); // Devuelve un array con las rutas de las imágenes
-}
-
+        public static function obtenerImagenesPorId($id, $pdo) {
+            $stmt = $pdo->prepare("SELECT imagen_url FROM imagenes WHERE producto_id = :id");
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetchAll(PDO::FETCH_COLUMN); 
+        }
     }
+?>

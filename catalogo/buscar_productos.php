@@ -1,86 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Repuestos</title>
-    <link rel="stylesheet" href="catalogo.css">
-    <link rel="stylesheet" href="../inicio/footer.css">
-</head>
-<body>
 <?php
+// 1. La sesión y lógica PHP DEBEN ir al puro inicio antes de cualquier salida visual
 session_start(); 
-include_once __DIR__ . '/../Clases/Carrito.php';
+
 include_once __DIR__ . '/../Clases/conexion.php';
 include_once __DIR__ . '/../Clases/Producto.php';
-include_once __DIR__ . '/../Clases/Buscador.php'; 
 
 $pdo = Cconexion::ConexionBD();
-$miCarrito = new Carrito();
 
-$totalItems = Carrito::obtenerTotalGlobal();
-$productosEnCarrito = $miCarrito->obtenerProductos();
+// Capturamos el parámetro enviado desde el JavaScript por POST
+$sub = isset($_POST['subcategoria']) ? trim($_POST['subcategoria']) : null;
 
-// Recibimos la subcategoría desde el JS (usando POST)
-$sub = isset($_POST['subcategoria']) ? $_POST['subcategoria'] : null;
-
-if ($sub && $pdo) {
-    // Buscamos en la base de datos si coincide con la subcategoría o la categoría
-    $sql = "SELECT * FROM productos WHERE sub_categoria = :sub OR categoria = :sub";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['sub' => $sub]);
-    $productosBD = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($productosBD) { ?>
-        <section id="catalogo-productos" class="contenedor-productos">
-        
-        <?php foreach ($productosBD as $fila) { 
-            // Instanciamos el objeto producto pasando los 10 parámetros en el orden exacto de su constructor
-            $prod = new producto(
-                $fila['id'] ?? $fila['id_producto'],
-                $fila['nombre'] ?? $fila['Nombre'],
-                $fila['descripcion'] ?? $fila['Descripcion'],
-                $fila['marca_producto'] ?? $fila['Marca_Producto'],
-                $fila['marca_vehiculo'] ?? $fila['Marca_Vehiculo'],
-                $fila['presentacion'] ?? $fila['Presentacion'],
-                $fila['imagen_url'] ?? $fila['imagen_url'],
-                $fila['referencia'] ?? $fila['referencia'],
-                $fila['categoria'] ?? $fila['Categoria'],
-                $fila['sub_categoria'] ?? $fila['Sub_Categoria']
-            );
-        ?>
-            <div class="tarjeta-repuesto">
-                <a href="../Producto/Producto.php?id=<?php echo $prod->Getid(); ?>"> 
-                    <img src="<?php echo $prod->Getimagen_Url(); ?>" alt="<?php echo htmlspecialchars($prod->GetNombre()); ?>">
-                </a>
-                <div class="info-repuesto">
-                    <h3 class="producto-titulo"><?php echo htmlspecialchars($prod->GetNombre()); ?></h3>
-                    <p class="marca">Marca de carro: <?php echo htmlspecialchars($prod->GetMarca_Vehiculo()); ?></p>
-                    <p class="tipo">Tipo: <?php echo htmlspecialchars($prod->GetCategoria()); ?></p>   
-                    <div class="contenedor-btn">
-                        <form onsubmit="agregarAlCarritoAsync(event, this.querySelector('.btn-comprar'))">
-                            <input type="hidden" name="id_producto" value="<?php echo $prod->Getid(); ?>">
-                            <input type="hidden" name="nombre_producto" value="<?php echo htmlspecialchars($prod->GetNombre()); ?>">
-                            
-                            <div class="card-acciones">
-                                <a href="../Producto/Producto.php?id=<?php echo $prod->Getid(); ?>" class="btn-ver-mas">
-                                    VER DETALLES
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>      
-            </div> 
-        <?php } ?>
-        
-        </section>
-<?php
-    } else {
-        echo "<p style='color:white; padding: 20px; text-align:center;'>No hay productos disponibles para la subcategoría: " . htmlspecialchars($sub) . "</p>";
-    }
-} else {
-    echo "<p style='color:white; padding: 20px; text-align:center;'>Error: No se seleccionó una subcategoría válida o no hay conexión con la base de datos.</p>";
+if (!$sub || !$pdo) {
+    echo "<p style='color:#fff; text-align:center; padding: 20px; grid-column: 1 / -1;'>No se especificó ninguna categoría o hubo un error de conexión.</p>";
+    exit();
 }
-?>
-</body>
-</html>
+
+// 2. Consulta optimizada a la BD
+$sql = "SELECT * FROM productos WHERE sub_categoria = :sub OR categoria = :sub";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['sub' => $sub]);
+$productosBD = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// 3. Renderizado del Fragmento HTML (Se inyectará directamente en #catalogo-productos)
+if (empty($productosBD)): ?>
+    <p style="color:#fff; text-align:center; padding: 40px; grid-column: 1 / -1;">
+        No hay repuestos disponibles para la categoría: <strong><?php echo htmlspecialchars($sub); ?></strong>
+    </p>
+<?php else: ?>
+    <?php foreach ($productosBD as $fila): 
+        // Instanciamos el objeto Producto con los datos retornados por la BD
+        $prod = new Producto(
+            $fila['id'] ?? $fila['id_producto'],
+            $fila['grupo'] ?? $fila['grupo_id'],
+            $fila['nombre'] ?? $fila['Nombre'],
+            $fila['descripcion'] ?? $fila['Descripcion'],
+            $fila['marca_producto'] ?? $fila['Marca_Producto'],
+            $fila['marca_vehiculo'] ?? $fila['Marca_Vehiculo'],
+            $fila['presentacion'] ?? $fila['Presentacion'],
+            $fila['imagen_url'] ?? $fila['imagen_url'],
+            $fila['referencia'] ?? $fila['referencia'],
+            $fila['categoria'] ?? $fila['Categoria'],
+            $fila['sub_categoria'] ?? $fila['Sub_Categoria']
+        );
+    ?>
+        <div class="tarjeta-repuesto">
+            <a href="/Producto/Producto.php?id=<?php echo $prod->GetId(); ?>"> 
+                <img src="<?php echo htmlspecialchars($prod->GetImagen_Url()); ?>" alt="<?php echo htmlspecialchars($prod->GetNombre()); ?>">
+            </a>
+            <div class="info-repuesto">
+                <div class="producto-titulo">    
+                    <h3><?php echo htmlspecialchars($prod->GetNombre()); ?></h3>
+                </div>
+                <p class="marca">Referencia: <?php echo htmlspecialchars($prod->GetReferencia()); ?></p>   
+                <p class="marca">Marca: <?php echo htmlspecialchars($prod->GetMarca_Producto()); ?></p>    
+                
+                <div class="contenedor-btn">
+                    <a href="/Producto/Producto.php?id=<?php echo $prod->GetId(); ?>" class="btn-ver-mas">
+                        VER DETALLES
+                    </a>
+                </div>
+            </div>       
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>

@@ -19,7 +19,6 @@ if ($pdo !== null) {
 
 $miCarrito = new Carrito();
 
-// 1. Procesar la eliminación de un ítem del carrito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'quitar_item') {
     $id_a_quitar = intval($_POST['id_producto_quitar']);
     $miCarrito->quitar($id_a_quitar);
@@ -33,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     exit();
 }
 
-// 2. Procesar la adición de un producto al carrito
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_producto'])) {
     $id_prod = intval($_POST['id_producto']);
     $nombre_prod = htmlspecialchars($_POST['nombre_producto']);
@@ -46,7 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_producto'])) {
 
 $id_actual = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Obtener especificaciones e imágenes
+$variantes = [];
+if ($repuesto) {
+    $ref_actual = trim($repuesto->GetReferencia());
+    $stmt_var = $pdo->prepare("SELECT id, presentacion FROM productos WHERE grupo_id = (SELECT grupo_id FROM productos WHERE id = :id_actual) AND grupo_id IS NOT NULL");
+    $stmt_var->execute(['id_actual' => $id_actual]);
+    $variantes = $stmt_var->fetchAll(PDO::FETCH_ASSOC);
+}
+
 $query_specs = "SELECT caracteristica AS nombre_caracteristica, valor FROM producto_caracteristicas WHERE producto_id = :id";
 $stmt_specs = $pdo->prepare($query_specs);
 $stmt_specs->execute(['id' => $id_actual]);
@@ -65,54 +70,10 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- <--- ESTO ES LO QUE OBLIGA A FUNCIONAR EL RESPONSIVE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $repuesto ? htmlspecialchars($repuesto->GetNombre()) : 'Producto'; ?> - Repuestos Malagón</title>
     <link rel="stylesheet" href="Producto.css">
-    <!-- ... resto de tus scripts y estilos ... -->
-</head>
-    <script>
-    // Función de WhatsApp sincronizada con el JSON del carrito PHP
-    function enviarWhatsApp(boton) {
-        let base64Data = boton.getAttribute('data-productos');
-        if (!base64Data) {
-            alert("No se encontraron productos en el botón.");
-            return;
-        }
-
-        let carritoRaw = null;
-        try {
-            let jsonTexto = atob(base64Data);
-            carritoRaw = JSON.parse(jsonTexto);
-        } catch (e) {
-            console.error("Error al procesar el carrito:", e);
-            alert("Hubo un problema al leer los productos del carrito.");
-            return;
-        }
-
-        let carrito = carritoRaw ? Object.values(carritoRaw) : [];
-
-        if (carrito.length === 0) {
-            alert("El carrito está vacío. Añade algunos repuestos antes de finalizar tu compra.");
-            return;
-        }
-
-        let mensaje = "¡Hola Repuestos Malagón! 👋 Quiero realizar el siguiente pedido:\n\n";
-        
-        carrito.forEach(item => {
-            let nombre = item.Nombre || item.nombre || item.nombre_producto || "Repuesto";
-            let cantidad = item.Cantidad || item.cantidad || item.cant || 1;
-            mensaje += `• ${nombre} (Cant: ${cantidad})\n`;
-        });
-
-        mensaje += "\n¿Me podrían confirmar disponibilidad y precios? ¡Muchas gracias!";
-
-        const telefono = "573166222504"; 
-        const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, '_blank');
-    }
-    </script>
 </head>
 <body>
 
@@ -128,23 +89,21 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
 
     <div id="menu-carrito" class="menu-lateral"> 
         <div class="menu-header">
-            <button class="btn-cerrar" onclick="toggleCarrito()">&times;</button>
             <h2>Mi Carrito</h2>
+            <button class="btn-cerrar" onclick="toggleCarrito()">&times;</button>
         </div>
-        
         <div class="menu-body">
             <div id="contenido-carrito">
-                <?php if (empty($productosEnCarrito)): ?>
-                    <p style="text-align:center; padding:20px; color:#fff;">El carrito está vacío.</p>
+                <?php if (empty($productosEnCarrito)):?>
+                    <p class="carrito-vacio-msg">El carrito está vacío.</p>
                 <?php else: ?>
                     <?php foreach ($productosEnCarrito as $id => $item): ?>
-                        <div class="item-carrito" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #22313a; color:#fff;">
+                        <div class="item-carrito">
                             <div>
-                                <strong style="font-size: 0.95rem;"><?php echo htmlspecialchars($item['nombre'] ?? $item['Nombre'] ?? 'Repuesto'); ?></strong><br>
-                                <span style="color: #26eedb; font-size: 0.85rem;">Cantidad: <?php echo $item['cantidad'] ?? $item['Cantidad'] ?? 1; ?></span>
-                            </div>
-                            
-                            <form method="POST" action="" style="margin: 0;">
+                                <strong><?php echo htmlspecialchars($item['nombre'] ?? $item['Nombre'] ?? 'Repuesto'); ?></strong><br>
+                                <span class="cantidad-item">Cantidad: <?php echo $item['cantidad'] ?? $item['Cantidad'] ?? 1; ?></span>
+                            </div>          
+                            <form method="POST" action="">
                                 <input type="hidden" name="action" value="quitar_item">
                                 <input type="hidden" name="id_producto_quitar" value="<?php echo $id; ?>">
                                 <button type="submit" class="btn-eliminar-item" title="Quitar del carrito">&times;</button>
@@ -157,7 +116,6 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         
         <div class="menu-footer">
             <?php 
-                // Generamos el JSON codificado en base64 para que el script lo lea sin conflictos con comillas HTML
                 $jsonProductos = !empty($productosEnCarrito) ? base64_encode(json_encode($productosEnCarrito)) : base64_encode(json_encode([]));
             ?>
             <button 
@@ -165,7 +123,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
                 class="btn-finalizar" 
                 id="finalizar-compra" 
                 data-productos="<?php echo $jsonProductos; ?>">
-                Finalizar Compra
+                Finalizar Compra por WhatsApp
             </button>
         </div>
     </div>      
@@ -197,14 +155,12 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         </div>
     </div>
     
-    <!-- (AQUÍ ESTABA EL <hr> SUELTO QUE SE ELIMINÓ) -->
-
     <div class="producto-info-compra">
         <h1><?php echo $repuesto ? htmlspecialchars($repuesto->GetNombre()) : ''; ?></h1>
         <hr>
         <h2>Sobre este Repuesto</h2>
-        <br>
-   
+
+        <?php if (!empty($lista_especificaciones)): ?>
         <table class="datos-especificos">
             <?php foreach ($lista_especificaciones as $especificacion): ?>
                 <tr class="datos-tabla">
@@ -213,33 +169,48 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
                 </tr>
             <?php endforeach; ?>
         </table>
+        <?php endif; ?>
 
         <div class="contenedor-especificaciones">
-            <?php echo $repuesto ? $repuesto->GetDescripcion() : ''; ?>
+            <p><?php echo $repuesto ? $repuesto->GetDescripcion() : ''; ?></p>
             <hr>  
         </div>
          
         <div class="info-superficial">
             <div class="dato-superficial">
                 <p>REFERENCIA</p>
-                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetReferencia()) : ''; ?></h4>
+                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetReferencia()) : '-'; ?></h4>
             </div>
             <div class="dato-superficial">
-                <p>MARCA COMPATIBLE</p>    
-                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetMarca_Vehiculo()) : ''; ?></h4>
+                <p>MARCA VEHÍCULO</p>    
+                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetMarca_Vehiculo()) : '-'; ?></h4>
             </div>
             <div class="dato-superficial">
                 <p>MARCA REPUESTO</p>    
-                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetMarca_Producto()) : ''; ?></h4>
+                <h4><?php echo $repuesto ? htmlspecialchars($repuesto->GetMarca_Producto()) : '-'; ?></h4>
             </div>
         </div>
+
+        <?php if (!empty($variantes)): ?>
+            <div class="contenedor-variantes">
+                <h3 class="titulo-variantes">Selecciona una opción:</h3>
+                <div class="lista-variantes">
+                <?php foreach ($variantes as $var): ?>
+                    <a href="Producto.php?id=<?php echo $var['id']; ?>" 
+                    class="btn-variante <?php echo ($var['id'] == $id_actual) ? 'activa' : ''; ?>">
+                        <?php echo htmlspecialchars($var['presentacion']); ?>
+                    </a>
+                <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <form method="POST" action="">
             <input type="hidden" name="id_producto" value="<?php echo $repuesto ? $repuesto->GetId() : 0; ?>">
             <input type="hidden" name="nombre_producto" value="<?php echo $repuesto ? htmlspecialchars($repuesto->GetNombre()) : ''; ?>">
             
             <button type="submit" class="btn-comprar">
-                <p>AGREGAR AL CARRITO</p>
+                AGREGAR AL CARRITO
             </button>
 
             <a href="../catalogo/Catalogo.php" class="btn-regresar-catalogo">
@@ -248,7 +219,7 @@ $productosEnCarrito = $miCarrito->obtenerProductos();
         </form>
     </div>   
 </div>
-</main>    
+</main>   
 <script src="Producto.js"></script>
 </body>
 </html>

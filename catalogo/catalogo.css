@@ -1,3 +1,6 @@
+/* ==========================================
+   RESET & VARIABLES GLOBALES
+   ========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -7,28 +10,30 @@
 
 body {
     background-color: #172949;
-    text-decoration: none;
-    height: 1000px;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* ==========================================
+   HEADER RESPONSIVO
+   ========================================== */
 header {
     background-color: #09101d;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
-    z-index: 1000;
     top: 0;
+    z-index: 1000;
     width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    font-weight: bold;
+    padding: 10px 20px;
+    gap: 10px;
 }
 
 .cajalogo {
-    margin: 0;
-    width: auto;
     height: 45px;
     order: 1;
 }
@@ -36,16 +41,18 @@ header {
 .logo {
     height: 100%;
     width: auto;
+    object-fit: contain;
 }
 
 .carrito {
-    height: 28px;
+    height: 32px;
     width: auto;
     background-color: transparent;
     cursor: pointer;
     order: 2;
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
 }
 
 .carritoimg {
@@ -55,48 +62,118 @@ header {
 
 #contador-carrito {
     position: absolute;
-    top: -4px;
-    right: -6px;
-    background: rgb(255, 145, 0);
+    top: -5px;
+    right: -8px;
+    background: #ff9100;
     color: white;
     border-radius: 50%;
-    padding: 2px 4px;
-    font-size: 7px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
     font-weight: bold;
 }
 
 .buscador {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 30px;
-    margin-top: 10px;
+    height: 38px;
     order: 3;
-    padding: 0;
 }
 
 .buscar {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    padding-left: 15px;
-    font-size: 100%;
-    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 0.95rem;
     background-color: #172949;
-    border: 1px solid white;
+    border: 1px solid #415a77;
     color: #fff;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
+.buscar:focus {
+    border-color: #4dfff6;
+}
+
+/* ==========================================
+   BARRA DE CATEGORÍAS (CARRUSEL HORIZONTAL)
+   ========================================== */
+.barra-productos {
+    position: relative;
+    width: 100%;
+    background-color: #0d1b2a;
+    border-bottom: 1px solid #22313a;
+    display: flex;
+    align-items: center;
+    padding: 5px 35px;
+}
+
+.contenedor-categorias {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.contenedor-categorias::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.btn-cat {
+    flex: 0 0 auto;
+    background-color: transparent;
+    color: #e0e6ed;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, background-color 0.2s;
+    border-radius: 5px;
+}
+
+.btn-cat:hover {
+    color: #4dfff6;
+    background-color: rgba(77, 255, 246, 0.08);
+}
+
+.flecha {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(13, 27, 42, 0.8);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flecha-izq { left: 0; }
+.flecha-der { right: 0; }
+
+/* ==========================================
+   CARRITO LATERAL (DRAWER)
+   ========================================== */
 .menu-lateral {
     position: fixed;
     top: 0;
-    right: -400px;
-    width: 350px;
+    right: -100%;
+    width: 100%;
+    max-width: 380px;
     height: 100%;
-    background-color: #1a2a47;
+    background-color: #0d1b33;
     color: white;
-    transition: 0.4s ease;
+    transition: right 0.3s ease-in-out;
     z-index: 3000;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -109,7 +186,7 @@ header {
 
 .menu-header {
     padding: 20px;
-    background-color: #0d1b2a;
+    background-color: #09101d;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,119 +197,67 @@ header {
     background: none;
     border: none;
     color: white;
-    font-size: 30px;
+    font-size: 28px;
     cursor: pointer;
 }
 
 .menu-body {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 15px;
 }
 
 .btn-eliminar-item {
     background: transparent;
     border: none;
     color: #ff5252;
-    font-size: 1.5rem;
-    line-height: 1;
+    font-size: 1.4rem;
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 5px;
-    transition: all 0.2s ease;
 }
 
 .btn-eliminar-item:hover {
-    background-color: rgba(255, 82, 82, 0.15);
-    color: #ff7373;
-    transform: scale(1.1);
-}
-
-.item-carrito-menu {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px solid #415a77;
-    font-size: 0.9rem;
+    background-color: rgba(255, 82, 82, 0.2);
 }
 
 .menu-footer {
-    padding: 10px;
-    background-color: #0d1b2a;
+    padding: 15px;
+    background-color: #09101d;
 }
 
 .btn-finalizar {
     width: 100%;
-    padding: 15px;
-    background-color: #4dfff6;
-    color: #0d1b2a;
+    padding: 14px;
+    background-color: #40e0d0; /* Verde tipo WhatsApp */
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 .btn-finalizar:hover {
-    background-color: #4dfff6;
+    background-color: #40e0d0;
     transform: scale(1.02);
 }
 
-/* Barra Sub-Categorias */
-.barra-productos {
-    position: relative;
+/* ==========================================
+   CONTENIDO PRINCIPAL Y REJILLA (GRID)
+   ========================================== */
+main {
+    flex: 1;
     width: 100%;
-    background-color: #415a77;
-    height: 35px;
-    margin: 1px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 45px;
-    padding-right: 45px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 15px;
 }
 
-.contenedor-categorias {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.contenedor-categorias::-webkit-scrollbar {
-    display: none;
-}
-
-.btn-cat {
-    flex: 0 0 auto;
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-}
-
-.btn-cat:hover {
-    color: #26eedb;
-}
-
-.flecha-izq {
-    left: 0;
-}
-
-.flecha-der {
-    right: 0;
-}
-
+/* Panel Subcategorías */
 .panel-sub {
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
@@ -253,6 +278,8 @@ header {
     transition: transform 0.3s, border-color 0.3s;
 }
 
+
+
 .card-subcategoria:hover {
     transform: translateY(-5px);
     border-color: #40e0d0;
@@ -262,7 +289,6 @@ header {
 .imagen-sub-categoria {
     width: 250px;
     height: 250px;
-    object-fit: contain;
     border-radius: 10px;
 }
 
@@ -271,251 +297,149 @@ header {
     color: white;
     font-size: 0.9rem;
     font-weight: bold;
-}
 
-/* Cuerpo de la pagina */
-main {
-    background-color: #172949;
-    color: white;
-    overflow: hidden;
-    width: 100%;
-    box-sizing: border-box !important;
 }
-
+/* Rejilla Adaptable de Productos */
 .contenedor-productos {
-    display: flex !important;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 10px 0;
     width: 100%;
-    height: auto;
-    background-color: #172949;
-    box-sizing: border-box;
-    margin-top: 20px;
 }
 
 .tarjeta-repuesto {
     background: #0d1b33;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 20px;
-    width: 350px;
-    text-align: center;
-    color: white;
-    box-sizing: border-box;
+    border: 1px solid #22313a;
+    border-radius: 14px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    text-decoration: none;
-    line-height: 1.7;
-    padding: 12px;
-    overflow: hidden;
+    justify-content:  center;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .tarjeta-repuesto:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    border-color: #4dfff6;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color:#3ca1d0;
 }
 
 .tarjeta-repuesto img {
-    width: auto;
-    height: 200px;
-    object-fit: contain;
-    background: transparent;
-    border-radius: 5px;
-}
-
-.info-repuesto {
-    margin-top: 10px;
-    background: #172949;
-    border-radius: 10px;
-    padding: 12px;
-    box-sizing: border-box;
-}
-
-.producto-titulo,
-.producto-titulo h3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1rem;
-    line-height: 1.3;
-    margin-bottom: 12px;
-    max-height: 3.9em;
-}
-
-.marca,
-.tipo {
-    color: #949799;
-}
-
-.contenedor-btn {
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    display: flex;
-    margin-top: 15px;
+    height: 180px;
+    object-fit: contain;
     margin-bottom: 10px;
 }
 
-/* MediaQueries */
-@media (min-width: 1680px) {
-    .flecha {
-        display: none;
-    }
-
-    .panel-sub {
-        justify-content: center;
-        align-items: center;
-        scroll-behavior: auto;
-    }
+.info-repuesto {
+    background: #172949;
+    border-radius: 8px;
+    padding: 12px;
+     justify-content: center;
+     align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-@media (max-width: 1680px) {
-    .flecha {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        background-color: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-        z-index: 10;
-        font-size: 1.1rem;
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .contenedor-categorias {
-        justify-content: flex-start;
-        margin-left: 0;
-    }
+.producto-titulo h3 {
+    font-size: 0.95rem;
+    line-height: 1.3;
+    color: #ffffff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.6em;
 }
 
-@media (min-width: 769px) {
+.marca {
+    color: #a0aec0;
+    font-size: 0.85rem;
+}
+
+.contenedor-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-ver-mas {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: transparent;
+    color: #3ca1d0;
+    border: 1px solid #3ca1d0;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-ver-mas:hover {
+    background-color: #3ca1d0;
+    color: #09101d;
+}
+
+
+
+/* Header para Pantallas Medianas / Grandes (Desktops y Tablets) */
+@media (min-width: 768px) {
     header {
         flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-        height: 8vh;
-        padding: 0 1%;
+        height: 70px;
+        padding: 0 30px;
     }
 
     .cajalogo {
-        height: 80%;
-        width: auto;
         order: 1;
     }
 
-    .logo {
-        height: 100%;
-        width: auto;
-    }
-
     .buscador {
-        width: 45%;
-        height: 70%;
-        margin-top: 0;
         order: 2;
-    }
-
-    .buscar {
-        width: 100%;
-        height: 100%;
+        width: 40%;
+        max-width: 600px;
     }
 
     .carrito {
-        height: 80%;
         order: 3;
     }
 }
 
-@media (max-width: 809px) {
-    .contenedor-categorias {
-        justify-content: flex-start;
-        margin-left: 0;
-        font-size: 20px;
-        height: 20px;
-    }
-
-    .flecha {
-        padding: 0%;
-    }
-
-    .btn-cat {
-        font-size: 0.7rem;
+/* Ajustes para dispositivos con pantallas pequeñas (< 480px) */
+@media (max-width: 480px) {
+    .contenedor-productos {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
     }
 
     .tarjeta-repuesto {
-        width: 90%;
-        flex-direction: row;
-        justify-content: center;
+        padding: 10px;
     }
 
-    .tarjeta-repuesto a {
-        width: 50%;
-    }
-
-    .info-repuesto {
-        width: 50%;
-    }
-
-    .card-subcategoria {
-        width: 150px;
-        height: 150px;
-    }
-
-    .imagen-sub-categoria {
-        height: 100px;
-        width: 100px;
-    }
-}
-
-@media (max-width: 500px) {
-    .tarjeta-repuesto {
-        flex-direction: column;
-        width: 45%;
-        margin: 0;
+    .tarjeta-repuesto img {
+        height: 120px;
     }
 
     .info-repuesto {
-        width: 100%;
-        margin: 0px;
-        padding: 2%;
-        padding-top: 0%;
-    }
-
-    .info-repuesto p {
-        display: none;
-    }
-
-    .producto-titulo {
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        margin-top: 7%;
-        margin-bottom: -30%;
+        padding: 8px;
     }
 
     .producto-titulo h3 {
-        font-size: 10px;
+        font-size: 0.8rem;
     }
 
-    .card-acciones,
-    .card-acciones a {
-        display: none;
+    .marca {
+        font-size: 0.75rem;
     }
-}
 
-@media (max-width: 350px) {
-    .tarjeta-repuesto {
-        width: 43%;
+    .btn-ver-mas {
+        padding: 8px 4px;
+        font-size: 0.75rem;
     }
+
 }
